@@ -1355,7 +1355,7 @@
     // ==========================================
     // 💾 LOCALSTORAGE PERSISTENCE ENGINE
     // ==========================================
-    const STORAGE_KEY = 'fairshare_v7';
+    const STORAGE_KEY = 'fairshare_v8';
 
     function saveAppState() {
       try {
@@ -1550,6 +1550,16 @@
     ];
 
     let mealDishes = [];
+    let activeKid = 'Usman';
+
+    // Keypad State
+    let simpleCents = 0;
+
+    // Multi-Payer List (Synchronized to selected folder members)
+    let multiPayers = [];
+
+    // Split Checkpoints State (Synchronized to selected folder members)
+    let selectedSplitMembers = [];
 
     let categories = [
       { name: 'Loan', icon: '💰' },
@@ -3791,6 +3801,49 @@ ${link}`);
       updateActivityBadge();
     }
 
+
+    // ==========================================
+    // 🧾 RECEIPT VIEWER & SEARCH HELPERS
+    // ==========================================
+    function clearBillSearch() {
+      const inp = document.getElementById('bill-search-input');
+      if (inp) inp.value = '';
+      activeBillSearchQuery = '';
+      const clearBtn = document.getElementById('bill-search-clear');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      const activeGrp = groups.find(g => g.id === activeFolderId);
+      if (activeGrp) renderSingleFolderView(activeGrp);
+    }
+
+    function closeReceiptModal() {
+      const m = document.getElementById('receipt-viewer-modal');
+      if (m) {
+        m.classList.add('hidden');
+        m.classList.remove('flex');
+      }
+    }
+
+    function viewReceiptFull() {
+      if (!attachedReceiptDataUrl) return;
+      const img = document.getElementById('receipt-modal-img');
+      if (img) img.src = attachedReceiptDataUrl;
+      const m = document.getElementById('receipt-viewer-modal');
+      if (m) {
+        m.classList.remove('hidden');
+        m.classList.add('flex');
+      }
+    }
+
+    function removeAttachedReceipt() {
+      attachedReceiptDataUrl = null;
+      const thumbWrap = document.getElementById('receipt-thumb-wrap');
+      const clearBtn = document.getElementById('receipt-remove-btn');
+      const inp = document.getElementById('receipt-file-input');
+      if (thumbWrap) thumbWrap.classList.add('hidden');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      if (inp) inp.value = '';
+    }
+
     // ==========================================
     // INITIAL BOOT
     // ==========================================
@@ -4272,8 +4325,7 @@ ${link}`);
       `;
     }
 
-  </script>
-  <script>
+    // Unified single script execution block
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').then(r => r.update()).catch(() => {});
