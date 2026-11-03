@@ -105,13 +105,7 @@
           <option value="SAR">SAR</option>
         </select>
 
-        <!-- Language Dropdown -->
-        <select id="lang-select" onchange="changeLanguage(this.value)" class="bg-slate-800 text-slate-200 text-xs font-bold px-2 py-1.5 rounded-xl border border-slate-700/80 focus:outline-none focus:border-emerald-500 cursor-pointer">
-          <option value="EN" selected>🇺🇸 EN</option>
-          <option value="UR">🇵🇰 اردو</option>
-          <option value="HI">🇮🇳 हिंदी</option>
-          <option value="ES">🇪🇸 ES</option>
-        </select>
+<!-- English-only interface: Language switcher removed -->
 
         <!-- Privacy Eye Toggle -->
         <button onclick="togglePrivacyMode()" id="privacy-toggle-btn" class="p-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-emerald-400 border border-slate-700/80 transition" title="Hide amounts in public">
@@ -1361,7 +1355,7 @@
     // ==========================================
     // 💾 LOCALSTORAGE PERSISTENCE ENGINE
     // ==========================================
-    const STORAGE_KEY = 'fairshare_clean_v5';
+    const STORAGE_KEY = 'fairshare_v7';
 
     function saveAppState() {
       try {
@@ -1369,8 +1363,7 @@
           currentActiveUser,
           isPrivacyMode,
           currentCurrencyCode: currentCurrency.code,
-          currentLang,
-          groups,
+                    groups,
           userProfiles,
           borrowedItems,
           trashExpenses,
@@ -1399,8 +1392,7 @@
         if (saved.currentCurrencyCode && currencies[saved.currentCurrencyCode]) {
           currentCurrency = currencies[saved.currentCurrencyCode];
         }
-        if (saved.currentLang) currentLang = saved.currentLang;
-        return true;
+                return true;
       } catch (e) {
         console.warn('LocalStorage load failed:', e);
         return false;
@@ -1413,7 +1405,7 @@
       location.reload();
     }
 
-    let currentActiveUser = 'You'; // Default Clean User: 'You'
+    let currentActiveUser = 'Usman'; // Default Active User: Usman ('You')
     let isPrivacyMode = false;
     let payerMode = 'single'; // 'single', 'multi', 'kitty'
     var simplifyDebtsMode = true;
@@ -1439,9 +1431,13 @@
     };
     let currentCurrency = currencies.PKR;
 
-    // Default clean user profiles (One single declaration)
+    // Default registered members profiles
     let userProfiles = {
-      'You': { name: 'You', phone: '', email: '', notifyWhatsApp: true, notifyEmail: true }
+      'Usman': { name: 'Usman', phone: '+92 300 1234567', email: 'usman@fairshare.app', notifyWhatsApp: true, notifyEmail: true },
+      'Arslan': { name: 'Arslan', phone: '+92 312 9876543', email: 'arslan@gmail.com', notifyWhatsApp: true, notifyEmail: true },
+      'Irfan': { name: 'Irfan', phone: '+92 333 5551234', email: 'irfan@gmail.com', notifyWhatsApp: true, notifyEmail: true },
+      'Ali': { name: 'Ali', phone: '+92 321 1112233', email: 'ali@gmail.com', notifyWhatsApp: true, notifyEmail: true },
+      'Hamza': { name: 'Hamza', phone: '+92 345 9998877', email: 'hamza@gmail.com', notifyWhatsApp: true, notifyEmail: true }
     };
 
     // ===================================================================
@@ -1520,18 +1516,38 @@
       }
     ];
 
-    // Default: Clean 100% Zero-Balance Production State
-    let groups = JSON.parse(JSON.stringify(CLEAN_STARTER_GROUPS));
+    // Default: Fully operational rich sample dataset loaded by default
+    let groups = JSON.parse(JSON.stringify(SAMPLE_DEMO_GROUPS));
     let activeFolderId = 'all';
-    let addBillGroupId = 'grp_general';
+    let addBillGroupId = 'grp_loan';
 
     // Physical Items Borrowed Tracker
-    let borrowedItems = [];
+    let borrowedItems = [
+      { id: 'item_1', name: 'DSLR Camera 📷', borrower: 'Ali', lender: 'Usman', due: 'Friday', returned: false },
+      { id: 'item_2', name: 'Camping Tent ⛺', borrower: 'Hamza', lender: 'Usman', due: 'Next Week', returned: false }
+    ];
 
     // Real-Time Activity & Group Alerts Center
-    let activityLog = [];
-
-    // Clean starter state already configured at top-level
+    let activityLog = [
+      {
+        id: 'act_1',
+        groupId: 'grp_loan',
+        groupName: 'Personal Loan',
+        icon: '💰',
+        text: 'Arslan (Rs 400,000.00) & Irfan (Rs 600,000.00) recorded Loan of Rs 1,000,000.00 for Usman.',
+        time: 'Today 12:00 PM',
+        membersNotified: ['Usman', 'Arslan', 'Irfan']
+      },
+      {
+        id: 'act_2',
+        groupId: 'grp_pizza',
+        groupName: 'Pizza & Food Party',
+        icon: '🍕',
+        text: 'Usman added bill "Large Pan Pizza & Drinks" for Rs 3,000.00 (Split between Usman, Ali, Hamza).',
+        time: 'Yesterday 08:30 PM',
+        membersNotified: ['Usman', 'Ali', 'Hamza']
+      }
+    ];
 
     let mealDishes = [];
 
@@ -1547,148 +1563,7 @@
     ];
     let selectedCategoryName = 'Loan';
 
-    // Multi-Language Dictionary
-    let currentLang = 'EN';
-    const i18n = {
-      EN: {
-        subtitle: "100% Free • Zero Limits",
-        viewingAs: "Viewing as:",
-        totalStatus: "Total Balance",
-        allSettled: "All settled up! No active debts.",
-        paidFor: "I Paid For<br>Something",
-        payBack: "Pay Someone<br>Back",
-        youGet: "You get",
-        youGive: "You give",
-        back: "Back",
-        stepBadge: "STEP 2 OF 2",
-        whoPaid: "Who Paid?",
-        modeJustYou: "Just You",
-        modeMulti: "Multi-Payer",
-        modeKitty: "🐱 Kitty Pool",
-        multiHint: "Enter the amount each person contributed:",
-        btnAddPayer: "+ Add Payer",
-        splitLabel: "Split Between Whom?",
-        splitSub: "Tap cards to toggle participation",
-        btnSelectAll: "👥 All Friends",
-        btnOnlyYou: "👤 Only You (100%)",
-        includedStatus: "Included in bill",
-        notIncludedStatus: "Not included",
-        loanOwesText: "owes the full",
-        btnSaveBill: "✅ Done! Save Bill",
-        whereMoneyWent: "Where the Money Went",
-        chartsFreeSub: "Interactive breakdown by category and spending",
-        mealBadge: "ZERO-MATH MEAL SPLITTER",
-        tapWhoAte: "Who Ate What?",
-        tapWhoAteSub: "Select a friend above, then tap what they ate to split accurately with zero drama",
-        pickFriendLabel: "1. Pick a Friend Sitting at Table",
-        btnAddFriend: "+ Add Friend",
-        btnAddDish: "+ Add Dish to Table",
-        btnSaveMeal: "✅ Save Meal Split to Folder",
-        inviteBadge: "INSTANT QR INVITATION",
-        tabHome: "Home",
-        tabAdd: "Add Bill",
-        tabPay: "Pay Back",
-        tabQr: "QR Join",
-        rouletteTitle: "Who Pays?",
-        rouletteSub: "Spin the wheel!",
-        chartsTitle: "Spending",
-        chartsSub: "Where money went",
-        mealBannerTitle: "Who Ate What?",
-        mealBannerSub: "Split restaurant bills with zero drama",
-      },
-      UR: {
-        subtitle: "100% Muft • Baghair Kisi Limit Ke",
-        viewingAs: "Dekh rahe hain bahesiyat:",
-        totalStatus: "Kul Hisab Kitab",
-        allSettled: "Sab hisab barabar hai! Koi udhar baaqi nahi.",
-        paidFor: "Mene Kharcha<br>Kiya",
-        payBack: "Udhar Wapas<br>Karein",
-        youGet: "Aapko milenge",
-        youGive: "Aapne dene hain",
-        back: "Wapis",
-        stepBadge: "MARHALA 2 / 2",
-        whoPaid: "Paise Kisne Diye?",
-        modeJustYou: "Sirf Mene",
-        modeMulti: "Mil Kar Diye",
-        modeKitty: "🐱 Kitti Fund",
-        multiHint: "Har dost ka ada shuda raqam likhein:",
-        btnAddPayer: "+ Dost Shamil Karein",
-        splitLabel: "Kiske Darmiyan Taqseem Ho?",
-        splitSub: "Card par click karke shamil ya bahar karein",
-        btnSelectAll: "👥 Tamam Dost",
-        btnOnlyYou: "👤 Sirf Mein (100%)",
-        includedStatus: "Hisab mein shamil",
-        notIncludedStatus: "Nahi shamil",
-        loanOwesText: "ne poora wapas karna hai",
-        btnSaveBill: "✅ Bill Mehfooz Karein",
-        whereMoneyWent: "Paisa Kahan Kharch Hua",
-        chartsFreeSub: "Category aur doston ke hisab se tafseelat",
-        mealBadge: "KHANE KA SAHI HISAB",
-        tapWhoAte: "Kisne Kya Khaya?",
-        tapWhoAteSub: "Dost muntakhab karein aur unke khane par click karein",
-        pickFriendLabel: "1. Table par baitha dost chunein",
-        btnAddFriend: "+ Dost Shamil Karein",
-        btnAddDish: "+ Naya Khana Dalein",
-        btnSaveMeal: "✅ Khane Ka Hisab Save Karein",
-        inviteBadge: "FOORI QR DAWAT",
-        tabHome: "Home",
-        tabAdd: "Bill Dalein",
-        tabPay: "Chukta Karein",
-        tabQr: "QR Code",
-        rouletteTitle: "Kon Dega?",
-        rouletteSub: "Quraandazi karein!",
-        chartsTitle: "Kharchay",
-        chartsSub: "Paisa kahan kharch hua",
-        mealBannerTitle: "Kisne Kya Khaya?",
-        mealBannerSub: "Restaurant ka bill bina math ke baantein",
-      },
-      HI: {
-        subtitle: "100% Muft • Zero Limit",
-        viewingAs: "Dekh rahe hain:",
-        totalStatus: "Kul Hisab",
-        allSettled: "Sab hisab barabar! Koi baki nahi.",
-        paidFor: "Maine Kharch<br>Kiya",
-        payBack: "Paisa Wapas<br>Karein",
-        youGet: "Aapko milenge",
-        youGive: "Aapko dene hain",
-        back: "Peeche",
-        stepBadge: "STEP 2 / 2",
-        whoPaid: "Kisne Diya?",
-        modeJustYou: "Sirf Aap",
-        modeMulti: "Milkar Diya",
-        modeKitty: "🐱 Kitty Fund",
-        multiHint: "Har vyakti dwara di gayi rashi darj karein:",
-        btnAddPayer: "+ Payer Jodein",
-        splitLabel: "Kin logon mein batega?",
-        splitSub: "Card par tap karke select karein",
-        btnSelectAll: "👥 Sabhi Dost",
-        btnOnlyYou: "👤 Sirf Main (100%)",
-        includedStatus: "Shamil hai",
-        notIncludedStatus: "Shamil nahi hai",
-        loanOwesText: "ko poora wapas karna hai",
-        btnSaveBill: "✅ Bill Save Karein",
-        whereMoneyWent: "Paisa Kahan Gaya",
-        chartsFreeSub: "Category anusar vivaran",
-        mealBadge: "KHANE KA BIKHRAV",
-        tapWhoAte: "Kisne Kya Khaya?",
-        tapWhoAteSub: "Dost chunein aur uske dwara khaye gaye dish par tap karein",
-        pickFriendLabel: "1. Table par dost chunein",
-        btnAddFriend: "+ Dost Jodein",
-        btnAddDish: "+ Naya Dish Jodein",
-        btnSaveMeal: "✅ Khana Save Karein",
-        inviteBadge: "TURANT QR CODE",
-        tabHome: "Home",
-        tabAdd: "Bill Jodein",
-        tabPay: "Hisab Chukayein",
-        tabQr: "QR Code",
-        rouletteTitle: "Kaun Dega?",
-        rouletteSub: "Lucky draw karein!",
-        chartsTitle: "Kharcha",
-        chartsSub: "Paisa kahan gaya",
-        mealBannerTitle: "Kisne Kya Khaya?",
-        mealBannerSub: "Restaurant bill bina math ke baantein",
-      }
-    };
+    // English-only application engine (100% pure English throughout)
 
     function formatMoney(amount) {
       if (isPrivacyMode) return currentCurrency.symbol + '••••••';
@@ -1765,45 +1640,23 @@
           : `${activeGroupObj ? activeGroupObj.icon + ' ' + activeGroupObj.name : 'Folder'}`;
       }
 
-      const isSelf = currentActiveUser === 'Usman';
+      const isSelf = (currentActiveUser === 'Usman' || currentActiveUser === 'You');
       if (Math.abs(overallNet) < 0.01) {
         homeBalanceEl.innerText = formatMoney(0);
         homeBalanceEl.className = "text-4xl font-black text-slate-100 my-1 tabular-nums tracking-tight balance-mask";
-        homeStatusMsgEl.innerText = currentLang === 'UR' 
-          ? "Sab hisab barabar hai! Koi udhar baaqi nahi."
-          : (currentLang === 'HI' ? "Sab hisab barabar! Koi baki nahi." : "All settled up! No active debts.");
+        homeStatusMsgEl.innerText = "All settled up! No active debts.";
       } else if (overallNet > 0) {
         homeBalanceEl.innerText = '+' + formatMoney(overallNet);
         homeBalanceEl.className = "text-4xl font-black text-emerald-400 my-1 tabular-nums tracking-tight balance-mask";
-        if (currentLang === 'UR') {
-          homeStatusMsgEl.innerText = isSelf 
-            ? `🎉 Doston ne aapko (${currentActiveUser}) paise wapas dene hain!` 
-            : `🎉 Doston ne ${currentActiveUser} ko paise wapas dene hain!`;
-        } else if (currentLang === 'HI') {
-          homeStatusMsgEl.innerText = isSelf 
-            ? `🎉 Doston ko aapko (${currentActiveUser}) paise wapas dene hain!` 
-            : `🎉 Doston ko ${currentActiveUser} ko paise dene hain!`;
-        } else {
-          homeStatusMsgEl.innerText = isSelf 
-            ? `🎉 Friends owe you (${currentActiveUser})!` 
-            : `🎉 Friends owe ${currentActiveUser}!`;
-        }
+        homeStatusMsgEl.innerText = isSelf 
+          ? `🎉 Friends owe you (${currentActiveUser})!` 
+          : `🎉 Friends owe ${currentActiveUser}!`;
       } else {
         homeBalanceEl.innerText = '-' + formatMoney(Math.abs(overallNet));
         homeBalanceEl.className = "text-4xl font-black text-rose-400 my-1 tabular-nums tracking-tight balance-mask";
-        if (currentLang === 'UR') {
-          homeStatusMsgEl.innerText = isSelf 
-            ? `⚠️ Aap ne (${currentActiveUser}) doston ko paise wapas karne hain!` 
-            : `⚠️ ${currentActiveUser} ne doston ko paise wapas karne hain!`;
-        } else if (currentLang === 'HI') {
-          homeStatusMsgEl.innerText = isSelf 
-            ? `⚠️ Aapko (${currentActiveUser}) doston ko paise dene hain!` 
-            : `⚠️ ${currentActiveUser} ko doston ko paise dene hain!`;
-        } else {
-          homeStatusMsgEl.innerText = isSelf 
-            ? `⚠️ You owe friends (${currentActiveUser})!` 
-            : `⚠️ ${currentActiveUser} owes friends!`;
-        }
+        homeStatusMsgEl.innerText = isSelf 
+          ? `⚠️ You owe friends (${currentActiveUser})!` 
+          : `⚠️ ${currentActiveUser} owes friends!`;
       }
 
       // Render Folders & Screens
@@ -2054,7 +1907,7 @@
               <span class="w-2 h-2 rounded-full ${isZero ? 'bg-slate-500' : isPos ? 'bg-emerald-400' : 'bg-rose-400'}"></span>
               <div>
                 <span class="font-bold text-slate-200">
-                  ${name} ${isActive ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">(' + (currentLang === 'UR' ? 'Aap / Active' : 'You') + ')</span>' : ''}
+                  ${name} ${isActive ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">(' + 'You' + ')</span>' : ''}
                 </span>
                 ${!isActive ? `<span class="text-[9px] text-slate-400 block">${userProfiles[name]?.phone || userProfiles[name]?.email || 'Member'}</span>` : ''}
               </div>
@@ -2365,7 +2218,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold ${isChecked ? 'text-slate-100' : 'text-slate-400'}">
-                  ${name} ${isYou ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">(' + (currentLang === 'UR' ? 'Aap' : 'You') + ')</span>' : ''}
+                  ${name} ${isYou ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">'(You)</span>' : ''}
                 </span>
               </div>
             </div>
@@ -2790,9 +2643,9 @@ Paid amounts (${formatMoney(sum)}) must equal total bill (${formattedTotal}).`);
         let headline = `${t.from} needs to pay`;
         let targetName = t.to;
         if (isFromActive) {
-          headline = currentLang === 'UR' ? 'Aap ne dena hai' : 'You need to pay';
+          headline = 'You need to pay';
         } else if (isToActive) {
-          headline = currentLang === 'UR' ? `${t.from} ne aapko dena hai` : `${t.from} pays you`;
+          headline = `${t.from} pays you`;
         }
 
         return `
@@ -3100,14 +2953,12 @@ FairShare (100% Free • Zero Limits)`;
       const allMembersSet = new Set();
       groups.forEach(g => g.members.forEach(m => allMembersSet.add(m)));
       const allMembers = Array.from(allMembersSet);
-      if (allMembers.length === 0) allMembers.push('You');
+      if (allMembers.length === 0) allMembers.push(currentActiveUser || 'Usman');
 
-      const isUrdu = currentLang === 'UR';
       const userSelect = document.getElementById('user-view-select');
       if (userSelect) {
         userSelect.innerHTML = allMembers.map(m => {
-          const isYou = (m === 'You' || m === 'Usman');
-          const youTag = isYou ? (isUrdu ? ' (Aap)' : ' (You)') : '';
+          const youTag = (m === currentActiveUser) ? ' (You)' : '';
           return `<option value="${m}" ${m === currentActiveUser ? 'selected' : ''}>${m}${youTag}</option>`;
         }).join('');
       }
@@ -3116,7 +2967,7 @@ FairShare (100% Free • Zero Limits)`;
       const hubWa = document.getElementById('hub-wa-member-select');
       if (hubWa) {
         const others = allMembers.filter(m => m !== currentActiveUser);
-        hubWa.innerHTML = others.map(m => `<option value="${m}">${isUrdu ? 'Dost: ' : 'Friend: '}${m}</option>`).join('');
+        hubWa.innerHTML = others.map(m => `<option value="${m}">Friend: ${m}</option>`).join('');
       }
 
       // Invite Modal dropdowns
@@ -3787,65 +3638,8 @@ ${link}`);
       showToast(`Currency set to ${currentCurrency.code} (${currentCurrency.symbol}). Base denomination active.`);
     }
 
+    // English-only interface handler (backward-compatible no-op)
     function changeLanguage(lang) {
-      currentLang = lang;
-      const t = i18n[lang] || i18n.EN;
-      
-      const setTxt = (id, val, isHtml = false) => {
-        const el = document.getElementById(id);
-        if (el && val !== undefined) {
-          if (isHtml) el.innerHTML = val;
-          else el.innerText = val;
-        }
-      };
-
-      setTxt('txt-subtitle', t.subtitle);
-      setTxt('txt-viewing-as', t.viewingAs);
-      setTxt('txt-total-status', t.totalStatus);
-      setTxt('txt-btn-paid', t.paidFor, true);
-      setTxt('txt-btn-settle', t.payBack, true);
-      setTxt('txt-tab-home', t.tabHome);
-      setTxt('txt-tab-add', t.tabAdd);
-      setTxt('txt-tab-pay', t.tabPay);
-      setTxt('txt-tab-qr', t.tabQr);
-      setTxt('txt-step-badge', t.stepBadge);
-      setTxt('txt-who-paid', t.whoPaid);
-      setTxt('txt-mode-just-you', t.modeJustYou);
-      setTxt('txt-mode-multi', t.modeMulti);
-      setTxt('txt-mode-kitty', t.modeKitty);
-      setTxt('txt-multipayer-hint', t.multiHint);
-      setTxt('txt-btn-add-payer', t.btnAddPayer);
-      setTxt('txt-split-label', t.splitLabel);
-      setTxt('txt-split-sub', t.splitSub);
-      setTxt('txt-btn-select-all', t.btnSelectAll);
-      setTxt('txt-btn-only-you', t.btnOnlyYou);
-      setTxt('txt-btn-save-bill', t.btnSaveBill);
-      setTxt('txt-where-money-went', t.whereMoneyWent);
-      setTxt('txt-charts-free-sub', t.chartsFreeSub);
-      setTxt('txt-meal-badge', t.mealBadge);
-      setTxt('txt-tap-who-ate', t.tapWhoAte);
-      setTxt('txt-tap-who-ate-sub', t.tapWhoAteSub);
-      setTxt('txt-pick-friend-label', t.pickFriendLabel);
-      setTxt('txt-btn-add-friend', t.btnAddFriend);
-      setTxt('txt-btn-add-dish', t.btnAddDish);
-      setTxt('txt-btn-save-meal', t.btnSaveMeal);
-      setTxt('txt-invite-badge', t.inviteBadge);
-      
-      // Home shortcut cards
-      setTxt('txt-roulette-title', t.rouletteTitle);
-      setTxt('txt-roulette-sub', t.rouletteSub);
-      setTxt('txt-charts-title', t.chartsTitle);
-      setTxt('txt-charts-sub', t.chartsSub);
-      setTxt('txt-meal-banner-title', t.mealBannerTitle);
-      setTxt('txt-meal-banner-sub', t.mealBannerSub);
-
-      const sel = document.getElementById('lang-select');
-      if (sel && sel.value !== lang) sel.value = lang;
-
-      ['txt-back-1', 'txt-back-2', 'txt-back-3', 'txt-back-4', 'txt-back-5'].forEach(id => {
-        setTxt(id, t.back);
-      });
-
       renderUserPerspectiveSelect();
       recalculateAllBalances();
       saveAppState();
@@ -4006,9 +3800,7 @@ ${link}`);
     renderCategoriesRibbon();
     renderKidFriendsRibbon();
     renderKidDishes();
-    const initLangSelect = document.getElementById('lang-select');
-    if (initLangSelect) initLangSelect.value = currentLang;
-    changeLanguage(currentLang);
+    // English is the default and only active language
     renderBorrowedItems();
     recalculateAllBalances();
     updateSimpleDisplay();
