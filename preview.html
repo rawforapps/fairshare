@@ -146,7 +146,7 @@
     <div class="bg-slate-900 border-b border-slate-800 px-3.5 py-1.5 flex items-center justify-between text-xs">
       <div class="flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span class="text-slate-400 font-bold text-[11px]" id="txt-viewing-as">Mera Account:</span>
+        <span class="text-slate-400 font-bold text-[11px]" id="txt-viewing-as">Viewing as:</span>
         <select id="user-view-select" onchange="switchUserPerspective(this.value)" class="bg-slate-850 text-emerald-400 font-black px-2 py-0.5 rounded-lg border border-slate-750 focus:outline-none cursor-pointer text-xs">
           <!-- Populated dynamically with Usman, Arslan, Irfan, Ali, Hamza -->
         </select>
@@ -176,7 +176,7 @@
         <!-- Big Clear Status Card (Dynamically computed from actual bills) -->
         <div class="bg-gradient-to-b from-slate-850 to-slate-900 border border-slate-800 rounded-3xl p-5 text-center shadow-lg">
           <div class="flex items-center justify-center gap-1.5">
-            <span class="text-xs font-black uppercase tracking-wider text-emerald-400" id="txt-total-status">Kul Hisab Kitab</span>
+            <span class="text-xs font-black uppercase tracking-wider text-emerald-400" id="txt-total-status">Total Balance</span>
             <span id="active-folder-badge" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">All Folders</span>
           </div>
           <div class="text-4xl font-black text-slate-100 my-1 tabular-nums tracking-tight balance-mask" id="home-balance">
@@ -195,7 +195,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
             </div>
-            <span class="font-black text-sm leading-tight" id="txt-btn-paid">Mene Kharcha<br>Kiya</span>
+            <span class="font-black text-sm leading-tight" id="txt-btn-paid">I Paid For<br>Something</span>
           </button>
 
           <button onclick="switchScreen('pay-back')" class="p-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white flex flex-col items-center justify-center text-center shadow-lg shadow-blue-600/20 active:scale-95 transition">
@@ -204,7 +204,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
               </svg>
             </div>
-            <span class="font-black text-sm leading-tight" id="txt-btn-settle">Udhar Wapas<br>Karein</span>
+            <span class="font-black text-sm leading-tight" id="txt-btn-settle">Pay Someone<br>Back</span>
           </button>
         </div>
 
@@ -220,13 +220,13 @@
             </button>
           </div>
 
-          <!-- Folder Select Chips (Scrollable with Desktop Arrow Controls) -->
+          <!-- Folder Select Chips (Scrollable with Touch & Desktop Arrow Controls) -->
           <div class="relative flex items-center group/chips">
-            <button type="button" onclick="scrollFolderChips(-140)" class="hidden sm:flex absolute left-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700 shadow-lg text-xs -ml-2 transition active:scale-95" title="Scroll left">‹</button>
-            <div class="flex items-center gap-2 overflow-x-auto pb-2 pt-0.5 px-0.5 scroll-smooth custom-h-scrollbar w-full" id="folder-chips-container">
+            <button type="button" onclick="scrollFolderChips(-140)" class="flex absolute left-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700 shadow-lg text-xs -ml-1 transition active:scale-95" title="Scroll left">‹</button>
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 pt-0.5 px-6 scroll-smooth custom-h-scrollbar w-full" id="folder-chips-container">
               <!-- Dynamically populated with [⚡ All Folders] [💰 Personal Loan] [🍕 Pizza Party] -->
             </div>
-            <button type="button" onclick="scrollFolderChips(140)" class="hidden sm:flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700 shadow-lg text-xs -mr-2 transition active:scale-95" title="Scroll right">›</button>
+            <button type="button" onclick="scrollFolderChips(140)" class="flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700 shadow-lg text-xs -mr-1 transition active:scale-95" title="Scroll right">›</button>
           </div>
         </div>
 
@@ -421,7 +421,7 @@
       <section id="screen-add-simple" class="hidden space-y-3.5">
         <div class="flex items-center justify-between">
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
-            &larr; <span id="txt-back-1">Wapis</span>
+            &larr; <span id="txt-back-1">Back</span>
           </button>
           <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20" id="txt-step-badge">Add Bill</span>
           <span class="w-8"></span>
@@ -451,7 +451,7 @@
 
         <!-- 👥 WHO PAID? SINGLE VS MULTI-PAYER VS KITTY -->
         <div class="bg-slate-850 border border-slate-800 rounded-2xl p-2.5 space-y-2">
-          <span class="text-[11px] font-black uppercase tracking-wider text-slate-400 block px-1" id="txt-who-paid">Kisne Diya?</span>
+          <span class="text-[11px] font-black uppercase tracking-wider text-slate-400 block px-1" id="txt-who-paid">Who Paid?</span>
           
           <div class="grid grid-cols-3 gap-1.5 bg-slate-900 p-1 rounded-xl">
             <button onclick="setPayerMode('single')" id="payer-mode-single" class="py-1.5 rounded-lg text-xs font-black bg-emerald-500 text-slate-950 transition">
@@ -497,12 +497,12 @@
           </div>
         </div>
 
-        <!-- 👥 KISKO BAANTEIN? / SPLIT CHECKPOINTS (Folder Members Only!) -->
+        <!-- 👥 SPLIT BETWEEN WHOM? (Folder Members Only!) -->
         <div class="bg-slate-850 border border-slate-800 rounded-2xl p-2.5 space-y-2">
           <div class="flex items-center justify-between px-1">
             <div>
-              <span class="text-[11px] font-black uppercase tracking-wider text-slate-300 block" id="txt-split-label">Kisko Baantein? (Checkpoints)</span>
-              <span class="text-[10px] text-slate-400" id="txt-split-sub">Jin doston par kharcha hua unhein tick karein:</span>
+              <span class="text-[11px] font-black uppercase tracking-wider text-slate-300 block" id="txt-split-label">Split Between Whom?</span>
+              <span class="text-[10px] text-slate-400" id="txt-split-sub">Tap cards to toggle participation</span>
             </div>
             <div class="flex items-center gap-1.5">
               <button type="button" onclick="selectAllSplitMembers()" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-750 text-[10px] font-bold text-slate-300 border border-slate-700 transition" id="txt-btn-select-all">
@@ -527,7 +527,7 @@
             <input 
               id="custom-item-input" 
               type="text" 
-              placeholder="Kharcha kis cheez ka tha? (e.g. Loan, Dinner, Rent)" 
+              placeholder="What was this expense for? (e.g. Loan, Dinner, Rent)" 
               value="Loan" 
               class="bg-transparent text-sm font-bold text-slate-100 placeholder-slate-500 flex-1 focus:outline-none"
               oninput="handleCustomInput(this.value)"
@@ -622,15 +622,15 @@
       <section id="screen-pay-back" class="hidden space-y-3.5">
         <div class="flex items-center justify-between">
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
-            &larr; <span id="txt-back-2">Wapis</span>
+            &larr; <span id="txt-back-2">Back</span>
           </button>
-          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Chukta Karein</span>
+          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Settle Debts</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
           <h2 class="text-xl font-black text-slate-100">Pay Someone Back</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Sab se kam transactions mein hisab barabar karein</p>
+          <p class="text-xs text-slate-400 mt-0.5">Direct 1-on-1 peer transactions to clear balances</p>
         </div>
 
         <!-- Folder Filter for Settlements -->
@@ -668,15 +668,15 @@
       <section id="screen-charts" class="hidden space-y-3.5">
         <div class="flex items-center justify-between">
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
-            &larr; <span id="txt-back-3">Wapis</span>
+            &larr; <span id="txt-back-3">Back</span>
           </button>
-          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Kharchay</span>
+          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Spending</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
-          <h2 class="text-xl font-black text-slate-100" id="txt-where-money-went">Paisa Kahan Kharch Hua?</h2>
-          <p class="text-xs text-slate-400 mt-0.5" id="txt-charts-free-sub">Bina kisi fee ke • Hamesha 100% Muft</p>
+          <h2 class="text-xl font-black text-slate-100" id="txt-where-money-went">Where the Money Went</h2>
+          <p class="text-xs text-slate-400 mt-0.5" id="txt-charts-free-sub">Interactive breakdown by category and spending</p>
         </div>
 
         <div id="charts-categories-container" class="space-y-2">
@@ -690,26 +690,26 @@
       <section id="screen-who-ate" class="hidden space-y-3.5">
         <div class="flex items-center justify-between">
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
-            &larr; <span id="txt-back-4">Wapis</span>
+            &larr; <span id="txt-back-4">Back</span>
           </button>
-          <span class="text-xs font-black uppercase text-purple-400 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/20" id="txt-meal-badge">Khana Taqseem</span>
+          <span class="text-xs font-black uppercase text-purple-400 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/20" id="txt-meal-badge">Meal Splitter</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
-          <h2 class="text-xl font-black text-slate-100" id="txt-tap-who-ate">Kisne kya khaya tap karein</h2>
-          <p class="text-xs text-slate-400 mt-0.5" id="txt-tap-who-ate-sub">Pehle dost select karein, phir unki dish!</p>
+          <h2 class="text-xl font-black text-slate-100" id="txt-tap-who-ate">Who Ate What?</h2>
+          <p class="text-xs text-slate-400 mt-0.5" id="txt-tap-who-ate-sub">Pick a friend sitting at table, then tap their dishes!</p>
         </div>
 
         <!-- Friends at table selector -->
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
-            <span class="text-[10px] font-black uppercase text-slate-400" id="txt-pick-friend-label">Table par mojood dost:</span>
-            <button onclick="toggleAddMealFriendBox()" class="text-[10px] font-black text-purple-400 hover:underline" id="txt-btn-add-friend">+ Dost Add Karein</button>
+            <span class="text-[10px] font-black uppercase text-slate-400" id="txt-pick-friend-label">1. Pick a Friend Sitting at Table</span>
+            <button onclick="toggleAddMealFriendBox()" class="text-[10px] font-black text-purple-400 hover:underline" id="txt-btn-add-friend">+ Add Friend</button>
           </div>
 
           <div id="new-meal-friend-box" class="hidden flex items-center gap-1.5 bg-slate-850 p-2 rounded-xl border border-slate-700">
-            <input id="new-meal-friend-name" type="text" placeholder="Dost ka naam" class="flex-1 bg-slate-900 border border-slate-750 rounded-lg px-2 py-1 text-xs text-slate-100 focus:outline-none">
+            <input id="new-meal-friend-name" type="text" placeholder="Friend's name" class="flex-1 bg-slate-900 border border-slate-750 rounded-lg px-2 py-1 text-xs text-slate-100 focus:outline-none">
             <button onclick="addCustomMealFriend()" class="px-2.5 py-1 rounded-lg bg-purple-500 text-slate-950 text-xs font-black">Add</button>
             <button onclick="toggleAddMealFriendBox()" class="px-2 py-1 rounded-lg bg-slate-800 text-slate-400 text-xs font-bold">✕</button>
           </div>
@@ -744,15 +744,15 @@
       <section id="screen-qr" class="hidden space-y-3.5">
         <div class="flex items-center justify-between">
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
-            &larr; <span id="txt-back-5">Wapis</span>
+            &larr; <span id="txt-back-5">Back</span>
           </button>
-          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20" id="txt-invite-badge">Doston Ko Shamil Karein</span>
+          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20" id="txt-invite-badge">Instant QR Invitation</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
           <h2 class="text-xl font-black text-slate-100">Invite & Share Ledger</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Doston ko WhatsApp ya Email se add karein ta k unhein live status dikhayi de</p>
+          <p class="text-xs text-slate-400 mt-0.5">Invite friends via WhatsApp or Email so they see live balances</p>
         </div>
 
         <!-- 1. WhatsApp Invite Card -->
@@ -836,7 +836,7 @@
 
       <button onclick="switchScreen('pay-back')" id="tab-pay" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
         <span class="text-xl leading-none">💸</span>
-        <span class="text-[10px] font-black" id="txt-tab-pay">Chukta Karein</span>
+        <span class="text-[10px] font-black" id="txt-tab-pay">Pay Back</span>
       </button>
 
       <button onclick="switchScreen('qr')" id="tab-qr" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
@@ -1235,7 +1235,7 @@
       </div>
       <div>
         <h2 class="text-xl font-black text-slate-100 tracking-tight">FairShare Locked</h2>
-        <p class="text-xs text-slate-400 mt-1">PIN enter karein ya FaceID use karein</p>
+        <p class="text-xs text-slate-400 mt-1">Enter PIN or use Biometrics to unlock</p>
       </div>
 
       <!-- 4 PIN Dots -->
@@ -1361,7 +1361,7 @@
     // ==========================================
     // 💾 LOCALSTORAGE PERSISTENCE ENGINE
     // ==========================================
-    const STORAGE_KEY = 'fairshare_clean_v4';
+    const STORAGE_KEY = 'fairshare_clean_v5';
 
     function saveAppState() {
       try {
@@ -1413,7 +1413,7 @@
       location.reload();
     }
 
-    let currentActiveUser = 'Usman'; // Active User: Usman ("Usman yani I")
+    let currentActiveUser = 'You'; // Default Clean User: 'You'
     let isPrivacyMode = false;
     let payerMode = 'single'; // 'single', 'multi', 'kitty'
     var simplifyDebtsMode = true;
@@ -1439,13 +1439,9 @@
     };
     let currentCurrency = currencies.PKR;
 
-    // Profiles of all registered people
+    // Default clean user profiles (One single declaration)
     let userProfiles = {
-      'Usman': { name: 'Usman', phone: '+92 300 1234567', email: 'usman@fairshare.app', notifyWhatsApp: true, notifyEmail: true },
-      'Arslan': { name: 'Arslan', phone: '+92 312 9876543', email: 'arslan@gmail.com', notifyWhatsApp: true, notifyEmail: true },
-      'Irfan': { name: 'Irfan', phone: '+92 333 5551234', email: 'irfan@gmail.com', notifyWhatsApp: true, notifyEmail: true },
-      'Ali': { name: 'Ali', phone: '+92 321 1112233', email: 'ali@gmail.com', notifyWhatsApp: true, notifyEmail: true },
-      'Hamza': { name: 'Hamza', phone: '+92 345 9998877', email: 'hamza@gmail.com', notifyWhatsApp: true, notifyEmail: true }
+      'You': { name: 'You', phone: '', email: '', notifyWhatsApp: true, notifyEmail: true }
     };
 
     // ===================================================================
@@ -1535,12 +1531,7 @@
     // Real-Time Activity & Group Alerts Center
     let activityLog = [];
 
-    // Clean user profiles
-    let userProfiles = {
-      'You': { name: 'You', phone: '', email: '', notifyWhatsApp: true, notifyEmail: true }
-    };
-
-    let currentActiveUser = 'You';
+    // Clean starter state already configured at top-level
 
     let mealDishes = [];
 
@@ -3109,19 +3100,23 @@ FairShare (100% Free • Zero Limits)`;
       const allMembersSet = new Set();
       groups.forEach(g => g.members.forEach(m => allMembersSet.add(m)));
       const allMembers = Array.from(allMembersSet);
+      if (allMembers.length === 0) allMembers.push('You');
 
+      const isUrdu = currentLang === 'UR';
       const userSelect = document.getElementById('user-view-select');
       if (userSelect) {
-        userSelect.innerHTML = allMembers.map(m => 
-          `<option value="${m}" ${m === currentActiveUser ? 'selected' : ''}>${m}${m === 'Usman' ? ' (Aap / You)' : ''}</option>`
-        ).join('');
+        userSelect.innerHTML = allMembers.map(m => {
+          const isYou = (m === 'You' || m === 'Usman');
+          const youTag = isYou ? (isUrdu ? ' (Aap)' : ' (You)') : '';
+          return `<option value="${m}" ${m === currentActiveUser ? 'selected' : ''}>${m}${youTag}</option>`;
+        }).join('');
       }
 
       // Hub WhatsApp dropdown
       const hubWa = document.getElementById('hub-wa-member-select');
       if (hubWa) {
         const others = allMembers.filter(m => m !== currentActiveUser);
-        hubWa.innerHTML = others.map(m => `<option value="${m}">Dost: ${m}</option>`).join('');
+        hubWa.innerHTML = others.map(m => `<option value="${m}">${isUrdu ? 'Dost: ' : 'Friend: '}${m}</option>`).join('');
       }
 
       // Invite Modal dropdowns
@@ -3851,9 +3846,9 @@ ${link}`);
         setTxt(id, t.back);
       });
 
+      renderUserPerspectiveSelect();
       recalculateAllBalances();
       saveAppState();
-      showToast(`Language set to ${lang === 'EN' ? 'English' : (lang === 'UR' ? 'Urdu' : 'Hindi')}.`);
     }
 
     // Helper: set partial settlement input
@@ -4005,12 +4000,12 @@ ${link}`);
     // ==========================================
     // INITIAL BOOT
     // ==========================================
+    loadAppState();
     checkUrlJoinParams();
     renderUserPerspectiveSelect();
     renderCategoriesRibbon();
     renderKidFriendsRibbon();
     renderKidDishes();
-    loadAppState();
     const initLangSelect = document.getElementById('lang-select');
     if (initLangSelect) initLangSelect.value = currentLang;
     changeLanguage(currentLang);

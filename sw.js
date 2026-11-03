@@ -1,5 +1,5 @@
 // FairShare Offline Service Worker (v3 - Network First for HTML, Cache First for Assets)
-const CACHE_NAME = 'fairshare-cache-v3';
+const CACHE_NAME = 'fairshare-cache-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
