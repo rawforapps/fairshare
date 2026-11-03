@@ -46,6 +46,26 @@
       }
     }
 
+  
+    /* Sleek Horizontal Scrollbar */
+    .custom-h-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(71, 85, 105, 0.7) rgba(15, 23, 42, 0.4);
+    }
+    .custom-h-scrollbar::-webkit-scrollbar {
+      height: 5px;
+    }
+    .custom-h-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.5);
+      border-radius: 9999px;
+    }
+    .custom-h-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(71, 85, 105, 0.7);
+      border-radius: 9999px;
+    }
+    .custom-h-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #10b981;
+    }
   </style>
 </head>
 <body class="bg-slate-950 text-slate-50 min-h-screen flex items-center justify-center p-0 md:p-6 antialiased selection:bg-emerald-500 selection:text-slate-950">
@@ -200,9 +220,13 @@
             </button>
           </div>
 
-          <!-- Folder Select Chips (All Folders vs Specific Folder) -->
-          <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar" id="folder-chips-container">
-            <!-- Dynamically populated with [⚡ All Folders] [💰 Personal Loan] [🍕 Pizza Party] -->
+          <!-- Folder Select Chips (Scrollable with Desktop Arrow Controls) -->
+          <div class="relative flex items-center group/chips">
+            <button type="button" onclick="scrollFolderChips(-140)" class="hidden sm:flex absolute left-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700 shadow-lg text-xs -ml-2 transition active:scale-95" title="Scroll left">‹</button>
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 pt-0.5 px-0.5 scroll-smooth custom-h-scrollbar w-full" id="folder-chips-container">
+              <!-- Dynamically populated with [⚡ All Folders] [💰 Personal Loan] [🍕 Pizza Party] -->
+            </div>
+            <button type="button" onclick="scrollFolderChips(140)" class="hidden sm:flex absolute right-0 z-10 w-6 h-6 items-center justify-center rounded-full bg-slate-900/95 hover:bg-slate-800 text-slate-300 hover:text-emerald-400 border border-slate-700 shadow-lg text-xs -mr-2 transition active:scale-95" title="Scroll right">›</button>
           </div>
         </div>
 
@@ -1038,9 +1062,14 @@
         </div>
       </div>
 
-              <div class="pt-2 border-t border-slate-800">
-          <button type="button" onclick="resetAllDemoData()" class="w-full py-2 rounded-xl bg-rose-950/30 hover:bg-rose-950/50 border border-rose-800/40 text-rose-400 text-xs font-bold transition">
-            🔄 Reset to Original Demo Data
+              <div class="pt-2 border-t border-slate-800 space-y-2">
+          <button type="button" onclick="resetToCleanState()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 border border-slate-700 text-slate-200 text-xs font-bold transition flex items-center justify-center gap-2">
+            <span>🧹</span>
+            <span>Reset to Clean 0-Balance State (Fresh Start)</span>
+          </button>
+          <button type="button" onclick="loadSampleDemoData()" class="w-full py-2.5 rounded-xl bg-amber-950/30 hover:bg-amber-950/50 border border-amber-800/40 text-amber-400 text-xs font-bold transition flex items-center justify-center gap-2">
+            <span>✨</span>
+            <span>Load Sample Demo Data (Personal Loan & Pizza Party)</span>
           </button>
         </div>
 
@@ -1332,7 +1361,7 @@
     // ==========================================
     // 💾 LOCALSTORAGE PERSISTENCE ENGINE
     // ==========================================
-    const STORAGE_KEY = 'fairshare_state_v2';
+    const STORAGE_KEY = 'fairshare_clean_v4';
 
     function saveAppState() {
       try {
@@ -1423,14 +1452,17 @@
     // SPLITWISE GROUPS / FOLDERS ARCHITECTURE:
     // Every folder is completely isolated with its OWN members & bills!
     // ===================================================================
-    let groups = [
+    // ==========================================
+    // APP STATE & FOLDERS ARCHITECTURE
+    // ==========================================
+    const SAMPLE_DEMO_GROUPS = [
       {
         id: 'grp_loan',
         name: 'Personal Loan',
         category: 'Loan',
         icon: '💰',
         budget: 1500000,
-        members: ['Usman', 'Arslan', 'Irfan'], // ONLY Usman, Arslan, Irfan!
+        members: ['Usman', 'Arslan', 'Irfan'],
         kittyBalance: 0,
         expenses: [
           {
@@ -1445,7 +1477,7 @@
               { name: 'Irfan', amount: 600000 }
             ],
             splitWays: 1,
-            splitMembers: ['Usman'], // Beneficiary is Usman! Usman owes 1,000,000
+            splitMembers: ['Usman'],
             time: '12:00 PM',
             date: 'Today'
           }
@@ -1457,7 +1489,7 @@
         category: 'Food',
         icon: '🍕',
         budget: 5000,
-        members: ['Usman', 'Ali', 'Hamza'], // ONLY Usman, Ali, Hamza! Arslan & Irfan not in here!
+        members: ['Usman', 'Ali', 'Hamza'],
         kittyBalance: 500,
         expenses: [
           {
@@ -1479,51 +1511,39 @@
       }
     ];
 
-    let activeFolderId = 'all'; // 'all', or specific group id ('grp_loan', 'grp_pizza')
-    let addBillGroupId = 'grp_loan'; // Default selected folder for new bills
-
-    // Physical Items Borrowed Tracker ("Things Borrowed")
-    let borrowedItems = [
-      { id: 'item_1', name: 'DSLR Camera 📷', borrower: 'Ali', lender: 'Usman', due: 'Friday', returned: false },
-      { id: 'item_2', name: 'Camping Tent ⛺', borrower: 'Hamza', lender: 'Usman', due: 'Next Week', returned: false }
-    ];
-
-    // Keypad State
-    let simpleCents = 0;
-
-    // Multi-Payer List (Synchronized to selected folder members)
-    let multiPayers = [];
-
-    // Split Checkpoints State (Synchronized to selected folder members)
-    let selectedSplitMembers = [];
-
-    // Real-Time Activity & Group Alerts Center
-    let activityLog = [
+    const CLEAN_STARTER_GROUPS = [
       {
-        id: 'act_1',
-        groupId: 'grp_loan',
-        groupName: 'Personal Loan',
-        icon: '💰',
-        text: 'Arslan (Rs 400,000.00) & Irfan (Rs 600,000.00) recorded Loan of Rs 1,000,000.00 for Usman.',
-        time: 'Today 12:00 PM',
-        membersNotified: ['Usman', 'Arslan', 'Irfan']
-      },
-      {
-        id: 'act_2',
-        groupId: 'grp_pizza',
-        groupName: 'Pizza & Food Party',
-        icon: '🍕',
-        text: 'Usman added bill "Large Pan Pizza & Drinks" for Rs 3,000.00 (Split between Usman, Ali, Hamza).',
-        time: 'Yesterday 08:30 PM',
-        membersNotified: ['Usman', 'Ali', 'Hamza']
+        id: 'grp_general',
+        name: 'General',
+        category: 'General',
+        icon: '📁',
+        budget: 0,
+        members: ['You'],
+        kittyBalance: 0,
+        expenses: []
       }
     ];
 
-    // Meal Splitter State
-    let activeKid = 'Usman';
+    // Default: Clean 100% Zero-Balance Production State
+    let groups = JSON.parse(JSON.stringify(CLEAN_STARTER_GROUPS));
+    let activeFolderId = 'all';
+    let addBillGroupId = 'grp_general';
+
+    // Physical Items Borrowed Tracker
+    let borrowedItems = [];
+
+    // Real-Time Activity & Group Alerts Center
+    let activityLog = [];
+
+    // Clean user profiles
+    let userProfiles = {
+      'You': { name: 'You', phone: '', email: '', notifyWhatsApp: true, notifyEmail: true }
+    };
+
+    let currentActiveUser = 'You';
+
     let mealDishes = [];
 
-    // Categories Ribbon for Add Bill
     let categories = [
       { name: 'Loan', icon: '💰' },
       { name: 'Burgers', icon: '🍔' },
@@ -1829,7 +1849,7 @@
       if (!container) return;
 
       let chipsHtml = `
-        <button onclick="selectFolder('all')" class="px-3 py-1 rounded-xl text-xs font-black whitespace-nowrap transition border ${
+        <button type="button" onclick="selectFolder('all')" class="flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-black whitespace-nowrap transition border ${
           activeFolderId === 'all' 
             ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md shadow-emerald-500/20' 
             : 'bg-slate-900 text-slate-300 border-slate-750 hover:border-slate-600'
@@ -1841,19 +1861,100 @@
       groups.forEach(g => {
         const isSelected = activeFolderId === g.id;
         chipsHtml += `
-          <button onclick="selectFolder('${g.id}')" class="px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition border flex items-center gap-1.5 ${
+          <button type="button" onclick="selectFolder('${g.id}')" class="flex-shrink-0 px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition border flex items-center gap-1.5 ${
             isSelected 
               ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md shadow-emerald-500/20' 
               : 'bg-slate-900 text-slate-300 border-slate-750 hover:border-slate-600'
           }">
             <span>${g.icon}</span>
             <span>${g.name}</span>
-            <span class="text-[10px] opacity-80">(${g.members.length})</span>
+            <span class="text-[10px] opacity-80 font-mono">(${g.members.length})</span>
           </button>
         `;
       });
 
       container.innerHTML = chipsHtml;
+      setupHorizontalScroll('folder-chips-container');
+    }
+
+    function scrollFolderChips(delta) {
+      const c = document.getElementById('folder-chips-container');
+      if (c) c.scrollBy({ left: delta, behavior: 'smooth' });
+    }
+
+    function setupHorizontalScroll(elementId) {
+      const el = document.getElementById(elementId);
+      if (!el || el.dataset.wheelBound) return;
+      el.dataset.wheelBound = 'true';
+      el.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          el.scrollLeft += (e.deltaY > 0 ? 80 : -80);
+        }
+      }, { passive: false });
+    }
+
+    function loadSampleDemoData() {
+      groups = JSON.parse(JSON.stringify(SAMPLE_DEMO_GROUPS));
+      currentActiveUser = 'Usman';
+      userProfiles = {
+        'Usman': { name: 'Usman', phone: '+92 300 1234567', email: 'usman@example.com', notifyWhatsApp: true, notifyEmail: true },
+        'Arslan': { name: 'Arslan', phone: '+92 321 7654321', email: 'arslan@example.com', notifyWhatsApp: true, notifyEmail: true },
+        'Irfan': { name: 'Irfan', phone: '+92 333 9876543', email: 'irfan@example.com', notifyWhatsApp: true, notifyEmail: false },
+        'Ali': { name: 'Ali', phone: '+92 345 1122334', email: 'ali@example.com', notifyWhatsApp: true, notifyEmail: true },
+        'Hamza': { name: 'Hamza', phone: '+92 312 4455667', email: 'hamza@example.com', notifyWhatsApp: true, notifyEmail: false },
+      };
+      borrowedItems = [
+        { id: 'item_1', name: 'DSLR Camera 📷', borrower: 'Ali', lender: 'Usman', due: 'Friday', returned: false },
+        { id: 'item_2', name: 'Camping Tent ⛺', borrower: 'Hamza', lender: 'Usman', due: 'Next Week', returned: false }
+      ];
+      activityLog = [
+        {
+          id: 'act_1',
+          groupId: 'grp_loan',
+          groupName: 'Personal Loan',
+          icon: '💰',
+          text: 'Arslan (Rs 400,000.00) & Irfan (Rs 600,000.00) recorded Loan of Rs 1,000,000.00 for Usman.',
+          time: 'Today 12:00 PM',
+          membersNotified: ['Usman', 'Arslan', 'Irfan']
+        },
+        {
+          id: 'act_2',
+          groupId: 'grp_pizza',
+          groupName: 'Pizza & Food Party',
+          icon: '🍕',
+          text: 'Usman added bill "Large Pan Pizza & Drinks" for Rs 3,000.00 (Split between Usman, Ali, Hamza).',
+          time: 'Yesterday 08:30 PM',
+          membersNotified: ['Usman', 'Ali', 'Hamza']
+        }
+      ];
+      activeFolderId = 'all';
+      addBillGroupId = groups[0].id;
+      renderUserPerspectiveSelect();
+      renderFolderChips();
+      renderBorrowedItems();
+      recalculateAllBalances();
+      saveAppState();
+      showToast('✨ Sample demo data loaded!');
+    }
+
+    function resetToCleanState() {
+      groups = JSON.parse(JSON.stringify(CLEAN_STARTER_GROUPS));
+      currentActiveUser = 'You';
+      userProfiles = {
+        'You': { name: 'You', phone: '', email: '', notifyWhatsApp: true, notifyEmail: true }
+      };
+      borrowedItems = [];
+      activityLog = [];
+      mealDishes = [];
+      activeFolderId = 'all';
+      addBillGroupId = groups[0].id;
+      renderUserPerspectiveSelect();
+      renderFolderChips();
+      renderBorrowedItems();
+      recalculateAllBalances();
+      saveAppState();
+      showToast('🧹 App reset to clean 0 balance!');
     }
 
     function renderAllFoldersCards() {
