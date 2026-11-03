@@ -1,7 +1,8 @@
-// FairShare Offline Service Worker
-const CACHE_NAME = 'fairshare-cache-v1';
+// FairShare Offline Service Worker (v2 - Network First for HTML, Cache First for Assets)
+const CACHE_NAME = 'fairshare-cache-v2';
 const ASSETS_TO_CACHE = [
   './',
+  './index.html',
   './preview.html',
   './manifest.json',
   './assets/icon.png',
@@ -23,6 +24,7 @@ self.addEventListener('activate', (event) => {
       return Promise.all(
         keys.map((key) => {
           if (key !== CACHE_NAME) {
+            console.log('Cleaning old cache:', key);
             return caches.delete(key);
           }
         })
@@ -32,6 +34,30 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  const isHtml = event.request.mode === 'navigate' || 
+                 (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html'));
+
+  if (isHtml) {
+    // 🌐 Network-First for HTML to guarantee users get latest releases immediately
+    event.respondWith(
+      fetch(event.request)
+        .then((networkResponse) => {
+          if (networkResponse && networkResponse.status === 200) {
+            const copy = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
+          }
+          return networkResponse;
+        })
+        .catch(() => {
+          // Offline fallback
+          return caches.match(event.request)
+            .then(cached => cached || caches.match('./index.html') || caches.match('./preview.html'));
+        })
+    );
+    return;
+  }
+
+  // 📦 Cache-First for static assets (images, manifest, icons)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -46,11 +72,6 @@ self.addEventListener('fetch', (event) => {
           cache.put(event.request, responseToCache);
         });
         return networkResponse;
-      }).catch(() => {
-        // Fallback to preview.html if offline HTML requested
-        if (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('./preview.html');
-        }
       });
     })
   );

@@ -156,7 +156,7 @@
         <!-- Big Clear Status Card (Dynamically computed from actual bills) -->
         <div class="bg-gradient-to-b from-slate-850 to-slate-900 border border-slate-800 rounded-3xl p-5 text-center shadow-lg">
           <div class="flex items-center justify-center gap-1.5">
-            <span class="text-xs font-black uppercase tracking-wider text-emerald-400" id="txt-total-status">Total Balance</span>
+            <span class="text-xs font-black uppercase tracking-wider text-emerald-400" id="txt-total-status">Kul Hisab Kitab</span>
             <span id="active-folder-badge" class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700">All Folders</span>
           </div>
           <div class="text-4xl font-black text-slate-100 my-1 tabular-nums tracking-tight balance-mask" id="home-balance">
@@ -175,7 +175,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
               </svg>
             </div>
-            <span class="font-black text-sm leading-tight" id="txt-btn-paid">I Paid For<br>Something</span>
+            <span class="font-black text-sm leading-tight" id="txt-btn-paid">Mene Kharcha<br>Kiya</span>
           </button>
 
           <button onclick="switchScreen('pay-back')" class="p-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white flex flex-col items-center justify-center text-center shadow-lg shadow-blue-600/20 active:scale-95 transition">
@@ -184,7 +184,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
               </svg>
             </div>
-            <span class="font-black text-sm leading-tight" id="txt-btn-settle">Pay Someone<br>Back</span>
+            <span class="font-black text-sm leading-tight" id="txt-btn-settle">Udhar Wapas<br>Karein</span>
           </button>
         </div>
 
@@ -427,11 +427,11 @@
 
         <!-- 👥 WHO PAID? SINGLE VS MULTI-PAYER VS KITTY -->
         <div class="bg-slate-850 border border-slate-800 rounded-2xl p-2.5 space-y-2">
-          <span class="text-[11px] font-black uppercase tracking-wider text-slate-400 block px-1" id="txt-who-paid">Who Paid?</span>
+          <span class="text-[11px] font-black uppercase tracking-wider text-slate-400 block px-1" id="txt-who-paid">Kisne Diya?</span>
           
           <div class="grid grid-cols-3 gap-1.5 bg-slate-900 p-1 rounded-xl">
             <button onclick="setPayerMode('single')" id="payer-mode-single" class="py-1.5 rounded-lg text-xs font-black bg-emerald-500 text-slate-950 transition">
-              <span id="txt-mode-just-you">Just You</span>
+              <span id="txt-mode-just-you">Sirf Mene</span>
             </button>
             <button onclick="setPayerMode('multi')" id="payer-mode-multi" class="py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-200 transition">
               <span id="txt-mode-multi">👥 Mil Kar Diya</span>
@@ -477,15 +477,15 @@
         <div class="bg-slate-850 border border-slate-800 rounded-2xl p-2.5 space-y-2">
           <div class="flex items-center justify-between px-1">
             <div>
-              <span class="text-[11px] font-black uppercase tracking-wider text-slate-300 block" id="txt-split-label">Split Between Whom?</span>
-              <span class="text-[10px] text-slate-400" id="txt-split-sub">Tap cards to toggle participation</span>
+              <span class="text-[11px] font-black uppercase tracking-wider text-slate-300 block" id="txt-split-label">Kisko Baantein? (Checkpoints)</span>
+              <span class="text-[10px] text-slate-400" id="txt-split-sub">Jin doston par kharcha hua unhein tick karein:</span>
             </div>
             <div class="flex items-center gap-1.5">
               <button type="button" onclick="selectAllSplitMembers()" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-750 text-[10px] font-bold text-slate-300 border border-slate-700 transition" id="txt-btn-select-all">
                 👥 Sab Ko
               </button>
               <button type="button" onclick="selectOnlyYouSplit()" class="px-2 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-[10px] font-bold text-emerald-400 border border-emerald-500/30 transition" id="txt-btn-only-you">
-                👤 Only You (100%)
+                👤 Sirf Mujhe (100%)
               </button>
             </div>
           </div>
@@ -503,7 +503,7 @@
             <input 
               id="custom-item-input" 
               type="text" 
-              placeholder="What was this for? (e.g. Loan, Dinner, Rent)" 
+              placeholder="Kharcha kis cheez ka tha? (e.g. Loan, Dinner, Rent)" 
               value="Loan" 
               class="bg-transparent text-sm font-bold text-slate-100 placeholder-slate-500 flex-1 focus:outline-none"
               oninput="handleCustomInput(this.value)"
@@ -600,13 +600,13 @@
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
             &larr; <span id="txt-back-2">Wapis</span>
           </button>
-          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Settle Up</span>
+          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Chukta Karein</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
           <h2 class="text-xl font-black text-slate-100">Pay Someone Back</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Minimize debt transactions using Min-Cash-Flow algorithm</p>
+          <p class="text-xs text-slate-400 mt-0.5">Sab se kam transactions mein hisab barabar karein</p>
         </div>
 
         <!-- Folder Filter for Settlements -->
@@ -646,13 +646,13 @@
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
             &larr; <span id="txt-back-3">Wapis</span>
           </button>
-          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20" id="txt-charts-badge">SPENDING</span>
+          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">Kharchay</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
-          <h2 class="text-xl font-black text-slate-100" id="txt-where-money-went">Where the Money Went</h2>
-          <p class="text-xs text-slate-400 mt-0.5" id="txt-charts-free-sub">Interactive breakdown by category and spending</p>
+          <h2 class="text-xl font-black text-slate-100" id="txt-where-money-went">Paisa Kahan Kharch Hua?</h2>
+          <p class="text-xs text-slate-400 mt-0.5" id="txt-charts-free-sub">Bina kisi fee ke • Hamesha 100% Muft</p>
         </div>
 
         <div id="charts-categories-container" class="space-y-2">
@@ -668,20 +668,20 @@
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
             &larr; <span id="txt-back-4">Wapis</span>
           </button>
-          <span class="text-xs font-black uppercase text-purple-400 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/20" id="txt-meal-badge">ZERO-MATH MEAL SPLITTER</span>
+          <span class="text-xs font-black uppercase text-purple-400 bg-purple-500/10 px-2.5 py-0.5 rounded-full border border-purple-500/20" id="txt-meal-badge">Khana Taqseem</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
-          <h2 class="text-xl font-black text-slate-100" id="txt-tap-who-ate">Who Ate What?</h2>
-          <p class="text-xs text-slate-400 mt-0.5" id="txt-tap-who-ate-sub">Select a friend above, then tap what they ate to split accurately</p>
+          <h2 class="text-xl font-black text-slate-100" id="txt-tap-who-ate">Kisne kya khaya tap karein</h2>
+          <p class="text-xs text-slate-400 mt-0.5" id="txt-tap-who-ate-sub">Pehle dost select karein, phir unki dish!</p>
         </div>
 
         <!-- Friends at table selector -->
         <div class="space-y-1.5">
           <div class="flex items-center justify-between">
             <span class="text-[10px] font-black uppercase text-slate-400" id="txt-pick-friend-label">Table par mojood dost:</span>
-            <button onclick="toggleAddMealFriendBox()" class="text-[10px] font-black text-purple-400 hover:underline" id="txt-btn-add-friend">+ Add Friend</button>
+            <button onclick="toggleAddMealFriendBox()" class="text-[10px] font-black text-purple-400 hover:underline" id="txt-btn-add-friend">+ Dost Add Karein</button>
           </div>
 
           <div id="new-meal-friend-box" class="hidden flex items-center gap-1.5 bg-slate-850 p-2 rounded-xl border border-slate-700">
@@ -722,13 +722,13 @@
           <button onclick="switchScreen('home')" class="text-xs font-extrabold text-slate-400 hover:text-slate-100 flex items-center gap-1">
             &larr; <span id="txt-back-5">Wapis</span>
           </button>
-          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20" id="txt-invite-badge">INSTANT QR INVITATION</span>
+          <span class="text-xs font-black uppercase text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20" id="txt-invite-badge">Doston Ko Shamil Karein</span>
           <span class="w-8"></span>
         </div>
 
         <div class="text-center">
           <h2 class="text-xl font-black text-slate-100">Invite & Share Ledger</h2>
-          <p class="text-xs text-slate-400 mt-0.5">Invite friends via WhatsApp or Email to view live ledger balances</p>
+          <p class="text-xs text-slate-400 mt-0.5">Doston ko WhatsApp ya Email se add karein ta k unhein live status dikhayi de</p>
         </div>
 
         <!-- 1. WhatsApp Invite Card -->
@@ -812,7 +812,7 @@
 
       <button onclick="switchScreen('pay-back')" id="tab-pay" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
         <span class="text-xl leading-none">💸</span>
-        <span class="text-[10px] font-black" id="txt-tab-pay">Pay Back</span>
+        <span class="text-[10px] font-black" id="txt-tab-pay">Chukta Karein</span>
       </button>
 
       <button onclick="switchScreen('qr')" id="tab-qr" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
@@ -1206,7 +1206,7 @@
       </div>
       <div>
         <h2 class="text-xl font-black text-slate-100 tracking-tight">FairShare Locked</h2>
-        <p class="text-xs text-slate-400 mt-1">Enter 4-digit PIN or use Biometric unlock</p>
+        <p class="text-xs text-slate-400 mt-1">PIN enter karein ya FaceID use karein</p>
       </div>
 
       <!-- 4 PIN Dots -->
@@ -1679,6 +1679,2018 @@
       }
     };
 
+    function formatMoney(amount) {
+      if (isPrivacyMode) return currentCurrency.symbol + '••••••';
+      const num = Number(amount);
+      return currentCurrency.symbol + ' ' + num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    // ==========================================
+    // FOLDER & GROUP BALANCES CALCULATION
+    // ==========================================
+    function calculateGroupBalances(group) {
+      const balanceMap = {};
+      group.members.forEach(m => balanceMap[m] = 0);
+
+      group.expenses.forEach(exp => {
+        if (exp.payerMode === 'kitty') return;
+        const total = exp.amount;
+        const participants = exp.splitMembers.filter(m => group.members.includes(m));
+        if (participants.length === 0) return;
+        const share = total / participants.length;
+
+        // Credit payers
+        exp.payers.forEach(p => {
+          if (balanceMap[p.name] !== undefined) {
+            balanceMap[p.name] += p.amount;
+          }
+        });
+
+        // Debit participants (Itemized shares OR equal split)
+        if (exp.shares && typeof exp.shares === 'object') {
+          for (const [member, shareAmt] of Object.entries(exp.shares)) {
+            if (balanceMap[member] !== undefined) {
+              balanceMap[member] -= shareAmt;
+            }
+          }
+        } else {
+          participants.forEach(p => {
+            if (balanceMap[p] !== undefined) {
+              balanceMap[p] -= share;
+            }
+          });
+        }
+      });
+
+      return balanceMap;
+    }
+
+    // Overall Balance for the Active User
+    function recalculateAllBalances() {
+      // 1. Compute net per group
+      let overallNet = 0;
+      let activeGroupObj = groups.find(g => g.id === activeFolderId);
+
+      if (activeFolderId === 'all') {
+        groups.forEach(g => {
+          if (g.members.includes(currentActiveUser)) {
+            const bMap = calculateGroupBalances(g);
+            overallNet += (bMap[currentActiveUser] || 0);
+          }
+        });
+      } else if (activeGroupObj) {
+        const bMap = calculateGroupBalances(activeGroupObj);
+        overallNet = bMap[currentActiveUser] || 0;
+      }
+
+      // Update Home Status Card
+      const homeBalanceEl = document.getElementById('home-balance');
+      const homeStatusMsgEl = document.getElementById('txt-home-status-msg');
+      const folderBadgeEl = document.getElementById('active-folder-badge');
+
+      if (folderBadgeEl) {
+        folderBadgeEl.innerText = activeFolderId === 'all' 
+          ? 'All Folders' 
+          : `${activeGroupObj ? activeGroupObj.icon + ' ' + activeGroupObj.name : 'Folder'}`;
+      }
+
+      const isSelf = currentActiveUser === 'Usman';
+      if (Math.abs(overallNet) < 0.01) {
+        homeBalanceEl.innerText = formatMoney(0);
+        homeBalanceEl.className = "text-4xl font-black text-slate-100 my-1 tabular-nums tracking-tight balance-mask";
+        homeStatusMsgEl.innerText = currentLang === 'UR' 
+          ? "Sab hisab barabar hai! Koi udhar baaqi nahi."
+          : (currentLang === 'HI' ? "Sab hisab barabar! Koi baki nahi." : "All settled up! No active debts.");
+      } else if (overallNet > 0) {
+        homeBalanceEl.innerText = '+' + formatMoney(overallNet);
+        homeBalanceEl.className = "text-4xl font-black text-emerald-400 my-1 tabular-nums tracking-tight balance-mask";
+        if (currentLang === 'UR') {
+          homeStatusMsgEl.innerText = isSelf 
+            ? `🎉 Doston ne aapko (${currentActiveUser}) paise wapas dene hain!` 
+            : `🎉 Doston ne ${currentActiveUser} ko paise wapas dene hain!`;
+        } else if (currentLang === 'HI') {
+          homeStatusMsgEl.innerText = isSelf 
+            ? `🎉 Doston ko aapko (${currentActiveUser}) paise wapas dene hain!` 
+            : `🎉 Doston ko ${currentActiveUser} ko paise dene hain!`;
+        } else {
+          homeStatusMsgEl.innerText = isSelf 
+            ? `🎉 Friends owe you (${currentActiveUser})!` 
+            : `🎉 Friends owe ${currentActiveUser}!`;
+        }
+      } else {
+        homeBalanceEl.innerText = '-' + formatMoney(Math.abs(overallNet));
+        homeBalanceEl.className = "text-4xl font-black text-rose-400 my-1 tabular-nums tracking-tight balance-mask";
+        if (currentLang === 'UR') {
+          homeStatusMsgEl.innerText = isSelf 
+            ? `⚠️ Aap ne (${currentActiveUser}) doston ko paise wapas karne hain!` 
+            : `⚠️ ${currentActiveUser} ne doston ko paise wapas karne hain!`;
+        } else if (currentLang === 'HI') {
+          homeStatusMsgEl.innerText = isSelf 
+            ? `⚠️ Aapko (${currentActiveUser}) doston ko paise dene hain!` 
+            : `⚠️ ${currentActiveUser} ko doston ko paise dene hain!`;
+        } else {
+          homeStatusMsgEl.innerText = isSelf 
+            ? `⚠️ You owe friends (${currentActiveUser})!` 
+            : `⚠️ ${currentActiveUser} owes friends!`;
+        }
+      }
+
+      // Render Folders & Screens
+      renderFolderChips();
+      if (activeFolderId === 'all') {
+        document.getElementById('all-folders-container').classList.remove('hidden');
+        document.getElementById('single-folder-view').classList.add('hidden');
+        renderAllFoldersCards();
+      } else {
+        document.getElementById('all-folders-container').classList.add('hidden');
+        document.getElementById('single-folder-view').classList.remove('hidden');
+        renderSingleFolderView(activeGroupObj);
+      }
+
+      // Settlements on Pay Back Screen
+      renderSettlements();
+      renderChartsData();
+      updateActivityBadge();
+    }
+
+    // ==========================================
+    // FOLDERS NAVIGATION & DISPLAY
+    // ==========================================
+    function selectFolder(folderId) {
+      activeFolderId = folderId;
+      if (folderId !== 'all') {
+        addBillGroupId = folderId;
+      }
+      recalculateAllBalances();
+    }
+
+    function renderFolderChips() {
+      const container = document.getElementById('folder-chips-container');
+      if (!container) return;
+
+      let chipsHtml = `
+        <button onclick="selectFolder('all')" class="px-3 py-1 rounded-xl text-xs font-black whitespace-nowrap transition border ${
+          activeFolderId === 'all' 
+            ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md shadow-emerald-500/20' 
+            : 'bg-slate-900 text-slate-300 border-slate-750 hover:border-slate-600'
+        }">
+          ⚡ All Folders (${groups.length})
+        </button>
+      `;
+
+      groups.forEach(g => {
+        const isSelected = activeFolderId === g.id;
+        chipsHtml += `
+          <button onclick="selectFolder('${g.id}')" class="px-3 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition border flex items-center gap-1.5 ${
+            isSelected 
+              ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md shadow-emerald-500/20' 
+              : 'bg-slate-900 text-slate-300 border-slate-750 hover:border-slate-600'
+          }">
+            <span>${g.icon}</span>
+            <span>${g.name}</span>
+            <span class="text-[10px] opacity-80">(${g.members.length})</span>
+          </button>
+        `;
+      });
+
+      container.innerHTML = chipsHtml;
+    }
+
+    function renderAllFoldersCards() {
+      const container = document.getElementById('all-folders-container');
+      if (!container) return;
+
+      container.innerHTML = groups.map(g => {
+        const isMember = g.members.includes(currentActiveUser);
+        const bMap = calculateGroupBalances(g);
+        const net = isMember ? (bMap[currentActiveUser] || 0) : 0;
+        const isPos = net >= 0.01;
+        const isNeg = net <= -0.01;
+        const isZero = !isPos && !isNeg;
+
+        let statusDesc = '';
+        if (!isMember) {
+          statusDesc = `<span class="text-slate-500 italic">You are not in this folder</span>`;
+        } else if (isZero) {
+          statusDesc = `<span class="text-slate-400">All settled up (Rs 0.00)</span>`;
+        } else if (isPos) {
+          statusDesc = `<span class="text-emerald-400 font-bold">+${formatMoney(net)} (Friends owe you)</span>`;
+        } else {
+          statusDesc = `<span class="text-rose-400 font-bold">-${formatMoney(Math.abs(net))} (You owe folder)</span>`;
+        }
+
+        return `
+          <div class="bg-slate-850 border border-slate-800 rounded-2xl p-4 space-y-3 shadow-md hover:border-slate-700 transition">
+            <div class="flex items-start justify-between">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl p-2 rounded-2xl bg-slate-900 border border-slate-750">${g.icon}</span>
+                <div>
+                  <h3 class="font-black text-sm text-slate-100">${g.name}</h3>
+                  <p class="text-[10px] text-slate-400 mt-0.5">${g.members.length} Members: ${g.members.join(', ')}</p>
+                  <p class="text-[10px] text-slate-500 mt-0.5">${g.expenses.length} Bill${g.expenses.length === 1 ? '' : 's'}</p>
+                </div>
+              </div>
+              <div class="text-right">
+                ${statusDesc}
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-1 border-t border-slate-800/80">
+              <button onclick="openAddBillForGroup('${g.id}')" class="text-xs font-bold text-emerald-400 hover:text-emerald-300 flex items-center gap-1 bg-emerald-500/10 px-2.5 py-1 rounded-xl border border-emerald-500/20 active:scale-95 transition">
+                + Add Bill to ${g.name}
+              </button>
+              <button onclick="selectFolder('${g.id}')" class="text-xs font-black text-slate-200 hover:text-white bg-slate-800 hover:bg-slate-750 px-3 py-1 rounded-xl border border-slate-700 transition">
+                Open Folder &rarr;
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderSingleFolderView(group) {
+      if (!group) return;
+
+      document.getElementById('single-folder-icon').innerText = group.icon;
+      document.getElementById('single-folder-title').innerText = group.name;
+      document.getElementById('single-folder-members-count').innerText = `${group.members.length} Members: ${group.members.join(', ')}`;
+      document.getElementById('kitty-pool-display').innerText = formatMoney(group.kittyBalance || 0);
+
+      // Folder Budget Bar Calculation
+      const totalSpent = group.expenses.reduce((acc, b) => acc + (b.amount || 0), 0);
+      const budgetMax = group.budget || (totalSpent > 0 ? totalSpent * 1.5 : 10000);
+      const pct = Math.min(100, Math.round((totalSpent / budgetMax) * 100));
+      const budgetLeft = Math.max(0, budgetMax - totalSpent);
+
+      const budgetTextEl = document.getElementById('folder-budget-text');
+      const budgetBarEl = document.getElementById('folder-budget-bar');
+      const budgetUsedEl = document.getElementById('folder-budget-used');
+      const budgetLeftEl = document.getElementById('folder-budget-left');
+
+      if (budgetTextEl) budgetTextEl.innerText = `${formatMoney(totalSpent)} / ${formatMoney(budgetMax)} (${pct}%)`;
+      if (budgetBarEl) budgetBarEl.style.width = `${pct}%`;
+      if (budgetUsedEl) budgetUsedEl.innerText = `${formatMoney(totalSpent)} spent`;
+      if (budgetLeftEl) budgetLeftEl.innerText = `${formatMoney(budgetLeft)} left`;
+
+      // Members in this folder
+      const membersRibbon = document.getElementById('folder-members-ribbon');
+      membersRibbon.innerHTML = group.members.map(m => `
+        <div class="px-2.5 py-1 rounded-xl bg-slate-800 border border-slate-700 text-xs font-bold text-slate-300 flex items-center gap-1.5 whitespace-nowrap">
+          <span class="w-2 h-2 rounded-full ${m === currentActiveUser ? 'bg-emerald-400' : 'bg-purple-400'}"></span>
+          <span>${m}</span>
+          ${m !== currentActiveUser ? `
+            <button onclick="deleteMemberFromFolder('${group.id}', '${m}')" class="text-slate-400 hover:text-rose-400 font-bold ml-1 px-0.5" title="Remove from this folder">✕</button>
+          ` : ''}
+        </div>
+      `).join('');
+
+      // Balances in this folder
+      const bMap = calculateGroupBalances(group);
+      const balancesContainer = document.getElementById('folder-balances-container');
+      balancesContainer.innerHTML = group.members.map(name => {
+        const net = bMap[name] || 0;
+        const isPos = net >= 0.01;
+        const isNeg = net <= -0.01;
+        const isZero = !isPos && !isNeg;
+        const isActive = name === currentActiveUser;
+
+        return `
+          <div class="flex items-center justify-between text-xs py-2 px-2.5 rounded-xl transition ${
+            isActive ? 'bg-emerald-950/30 border border-emerald-500/40 my-1' : 'hover:bg-slate-800/40'
+          }">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full ${isZero ? 'bg-slate-500' : isPos ? 'bg-emerald-400' : 'bg-rose-400'}"></span>
+              <div>
+                <span class="font-bold text-slate-200">
+                  ${name} ${isActive ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">(' + (currentLang === 'UR' ? 'Aap / Active' : 'You') + ')</span>' : ''}
+                </span>
+                ${!isActive ? `<span class="text-[9px] text-slate-400 block">${userProfiles[name]?.phone || userProfiles[name]?.email || 'Member'}</span>` : ''}
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="text-right">
+                <span class="font-mono font-bold ${isZero ? 'text-slate-500' : isPos ? 'text-emerald-400' : 'text-rose-400'}">
+                  ${isZero ? formatMoney(0) : (isPos ? '+' : '-') + formatMoney(Math.abs(net))}
+                </span>
+                <span class="text-[9px] text-slate-400 block">${isZero ? 'Settled' : isPos ? 'Gets back' : 'Owes folder'}</span>
+              </div>
+              ${!isActive ? `
+                <button onclick="executeWhatsAppShare('${name}', '${userProfiles[name]?.phone || ''}', '${group.id}')" class="p-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 active:scale-95 transition" title="Send WhatsApp alert">
+                  💬
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Bills in this folder (With Edit Button)
+      const billsBadge = document.getElementById('folder-bills-badge');
+      billsBadge.innerText = `${group.expenses.length} Bill${group.expenses.length === 1 ? '' : 's'}`;
+
+      const billsContainer = document.getElementById('folder-recent-bills-container');
+      if (group.expenses.length === 0) {
+        billsContainer.innerHTML = `
+          <div class="py-6 text-center text-slate-500 text-xs">
+            <span class="text-2xl block mb-1">📝</span>
+            No bills in this folder yet. Tap <strong>"+ Add Bill"</strong> to record one!
+          </div>
+        `;
+        return;
+      }
+
+      let folderBills = group.expenses;
+      if (activeBillSearchQuery && activeBillSearchQuery.length > 0) {
+        folderBills = folderBills.filter(b => {
+          const matchTitle = (b.title || '').toLowerCase().includes(activeBillSearchQuery);
+          const matchCat = (b.category || '').toLowerCase().includes(activeBillSearchQuery);
+          const matchNotes = (b.notes || '').toLowerCase().includes(activeBillSearchQuery);
+          const matchPayers = (b.payers || []).some(p => p.name.toLowerCase().includes(activeBillSearchQuery));
+          const matchSplits = (b.splitMembers || []).some(m => m.toLowerCase().includes(activeBillSearchQuery));
+          return matchTitle || matchCat || matchNotes || matchPayers || matchSplits;
+        });
+      }
+      billsContainer.innerHTML = folderBills.map(b => {
+        let payersDesc = '';
+        if (b.payerMode === 'kitty') {
+          payersDesc = 'Paid from Shared Kitty Pool';
+        } else if (b.payers && b.payers.length > 0) {
+          payersDesc = 'Paid by ' + b.payers.map(p => `${p.name} (${formatMoney(p.amount)})`).join(' & ');
+        } else {
+          payersDesc = 'Paid by ' + currentActiveUser;
+        }
+
+        let splitDesc = b.splitWays === 1 && b.splitMembers.length === 1 
+          ? `🎯 100% Qarz (${b.splitMembers[0]})`
+          : `Split ${b.splitWays || b.splitMembers.length} ways (${b.splitMembers.join(', ')})`;
+        if (b.isRecurring) {
+          splitDesc += ' • <span class="text-emerald-400 font-extrabold">🔁 Monthly</span>';
+        }
+
+        return `
+          <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <span class="text-xl p-2 rounded-xl bg-slate-800">${b.category === 'Loan' ? '💰' : '🍕'}</span>
+              <div>
+                <h4 class="font-bold text-xs text-slate-100">${escapeHtml(b.title)}</h4>
+                <p class="text-[10px] text-slate-400 mt-0.5">${payersDesc}</p>
+                <p class="text-[9px] text-slate-500 mt-0.5">${b.date} • ${splitDesc}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-black text-emerald-400 font-mono">${formatMoney(b.amount)}</span>
+              <!-- Edit Button -->
+              <button onclick="openEditBillModal('${b.id}', '${group.id}')" class="text-slate-400 hover:text-emerald-400 px-1 font-bold text-xs" title="Edit this bill">
+                ✏️
+              </button>
+              <!-- Delete Button -->
+              <button onclick="deleteBillFromFolder('${group.id}', '${b.id}')" class="text-slate-500 hover:text-rose-400 px-1 font-bold text-xs" title="Delete bill">
+                ✕
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Toggle Add Member to specific folder
+    function toggleFolderAddMemberBox() {
+      const row = document.getElementById('add-member-folder-row');
+      row.classList.toggle('hidden');
+      if (!row.classList.contains('hidden')) {
+        document.getElementById('new-folder-member-name').focus();
+      }
+    }
+
+    function addMemberToActiveFolder() {
+      const input = document.getElementById('new-folder-member-name');
+      const name = input.value.trim();
+      if (!name) return;
+
+      const grp = groups.find(g => g.id === activeFolderId);
+      if (!grp) return;
+
+      if (!grp.members.includes(name)) {
+        grp.members.push(name);
+        if (!userProfiles[name]) {
+          userProfiles[name] = { name: name, phone: '', email: '', notifyWhatsApp: true, notifyEmail: true };
+        }
+        recalculateAllBalances();
+        alert(`✅ ${name} added to folder "${grp.name}"!`);
+      } else {
+        alert(`${name} is already in this folder.`);
+      }
+
+      input.value = '';
+      toggleFolderAddMemberBox();
+    }
+
+    function deleteMemberFromFolder(groupId, memberName) {
+      if (memberName === currentActiveUser) {
+        showToast('You cannot remove yourself from the active folder!', '⚠️');
+        return;
+      }
+      const grp = groups.find(g => g.id === groupId);
+      if (!grp) return;
+
+      const bMap = calculateGroupBalances(grp);
+      const net = bMap[memberName] || 0;
+      if (Math.abs(net) > 0.01) {
+        alert(`⚠️ Cannot remove "${memberName}"!\nThey have an active balance of ${formatMoney(net)} in folder "${grp.name}".\nPlease settle all debts with them before removing them.`);
+        return;
+      }
+
+      if (!confirm(`Remove "${memberName}" from folder "${grp.name}"?`)) return;
+      grp.members = grp.members.filter(m => m !== memberName);
+      recalculateAllBalances();
+      saveAppState();
+      renderSingleFolderView(groupId);
+      showToast(`"${memberName}" removed from folder "${grp.name}".`);
+    }
+
+    // ==========================================
+    // ADD BILL SCREEN & FOLDER ISOLATION
+    // ==========================================
+    function openAddBillForGroup(groupId) {
+      addBillGroupId = groupId;
+      switchScreen('add-simple');
+    }
+
+    function renderAddBillFolderSelect() {
+      const select = document.getElementById('bill-folder-select');
+      if (!select) return;
+
+      select.innerHTML = groups.map(g => `
+        <option value="${g.id}" ${g.id === addBillGroupId ? 'selected' : ''}>
+          ${g.icon} ${g.name} (${g.members.join(', ')})
+        </option>
+      `).join('');
+    }
+
+    function changeBillFolder(folderId) {
+      addBillGroupId = folderId;
+      const grp = groups.find(g => g.id === folderId);
+      if (!grp) return;
+
+      // Auto-update category icon and tag
+      selectedCategoryName = grp.category;
+      document.getElementById('custom-item-input').value = grp.category;
+      document.getElementById('active-item-emoji').innerText = grp.icon;
+
+      // Reset Payers list to members of THIS folder only
+      multiPayers = grp.members.map(m => ({ name: m, amount: 0 }));
+      selectedSplitMembers = [...grp.members];
+
+      renderDynamicPayers();
+      renderSplitCheckpoints();
+      updateSimpleDisplay();
+    }
+
+    function renderDynamicPayers() {
+      const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
+      const container = document.getElementById('dynamic-payers-container');
+      if (!container) return;
+
+      // Make sure all folder members have entries
+      grp.members.forEach(m => {
+        if (!multiPayers.some(p => p.name === m)) {
+          multiPayers.push({ name: m, amount: 0 });
+        }
+      });
+      // Filter out anyone not in this folder
+      multiPayers = multiPayers.filter(p => grp.members.includes(p.name));
+
+      container.innerHTML = multiPayers.map((p, index) => `
+        <div class="flex items-center justify-between text-xs bg-slate-900/60 p-1.5 rounded-xl border border-slate-800">
+          <span class="font-bold text-slate-200 px-1">${p.name}:</span>
+          <div class="flex items-center gap-1.5">
+            <span class="text-emerald-400 font-bold">${currentCurrency.symbol}</span>
+            <input 
+              type="number" 
+              value="${p.amount}" 
+              step="any"
+              class="w-24 bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-slate-100 font-mono text-xs focus:outline-none focus:border-emerald-500" 
+              oninput="handlePayerAmountChange(${index}, this.value)"
+            >
+            <button onclick="removePayerFromFolder(${index})" class="text-slate-400 hover:text-rose-400 px-1.5 py-0.5 text-sm font-bold" title="Delete payer">✕</button>
+          </div>
+        </div>
+      `).join('');
+      updateMultiPayerMath();
+    }
+
+    function handlePayerAmountChange(index, val) {
+      multiPayers[index].amount = parseFloat(val) || 0;
+      updateMultiPayerMath();
+    }
+
+    function removePayerFromFolder(index) {
+      multiPayers.splice(index, 1);
+      renderDynamicPayers();
+    }
+
+    function toggleAddPayerInput() {
+      const row = document.getElementById('new-payer-input-row');
+      row.classList.toggle('hidden');
+      if (!row.classList.contains('hidden')) {
+        document.getElementById('new-payer-name').focus();
+      }
+    }
+
+    function addCustomPayerToFolder() {
+      const input = document.getElementById('new-payer-name');
+      const name = input.value.trim();
+      if (!name) return;
+
+      const grp = groups.find(g => g.id === addBillGroupId);
+      if (!grp) return;
+
+      if (!grp.members.includes(name)) {
+        grp.members.push(name);
+        if (!userProfiles[name]) {
+          userProfiles[name] = { name: name, phone: '', email: '', notifyWhatsApp: true, notifyEmail: true };
+        }
+      }
+      if (!multiPayers.some(p => p.name === name)) {
+        multiPayers.push({ name: name, amount: 0 });
+      }
+      if (!selectedSplitMembers.includes(name)) {
+        selectedSplitMembers.push(name);
+      }
+
+      renderDynamicPayers();
+      renderSplitCheckpoints();
+      input.value = '';
+      toggleAddPayerInput();
+    }
+
+    function updateMultiPayerMath() {
+      const total = simpleCents / 100;
+      const sum = multiPayers.reduce((acc, p) => acc + (p.amount || 0), 0);
+      const diff = total - sum;
+
+      const statusEl = document.getElementById('multi-payer-sum-status');
+      if (Math.abs(diff) < 0.01) {
+        statusEl.className = "text-[11px] text-emerald-400 font-bold";
+        statusEl.innerText = `✓ Paid amounts (${formatMoney(sum)}) match total bill (${formatMoney(total)})`;
+      } else if (diff > 0) {
+        statusEl.className = "text-[11px] text-amber-400 font-bold";
+        statusEl.innerText = `⚠️ Remaining to assign: ${formatMoney(diff)}`;
+      } else {
+        statusEl.className = "text-[11px] text-rose-400 font-bold";
+        statusEl.innerText = `⚠️ Over allocated by: ${formatMoney(Math.abs(diff))}`;
+      }
+    }
+
+    function renderSplitCheckpoints() {
+      const container = document.getElementById('split-checkpoints-container');
+      if (!container) return;
+
+      const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
+      const total = simpleCents / 100;
+      const count = selectedSplitMembers.length;
+      const perPerson = count > 0 ? total / count : 0;
+
+      container.innerHTML = grp.members.map(name => {
+        const isChecked = selectedSplitMembers.includes(name);
+        const isYou = name === currentActiveUser;
+        const shareText = isChecked ? formatMoney(perPerson) : formatMoney(0);
+        const statusText = isChecked 
+          ? (count === 1 ? '🎯 100% (Poora)' : 'Hisab mein shamil') 
+          : 'Nahi shamil';
+
+        return `
+          <div onclick="toggleSplitMember('${name}')" class="flex items-center justify-between p-2 rounded-xl border transition cursor-pointer select-none ${
+            isChecked 
+              ? 'bg-slate-800/90 border-emerald-500/40 text-slate-100 shadow-sm' 
+              : 'bg-slate-900/50 border-slate-800/80 text-slate-400 hover:border-slate-700'
+          }">
+            <div class="flex items-center gap-2.5">
+              <div class="w-5 h-5 rounded-lg flex items-center justify-center font-bold text-xs transition ${
+                isChecked ? 'bg-emerald-500 text-slate-950 font-black' : 'border border-slate-600 bg-slate-850'
+              }">
+                ${isChecked ? '✓' : ''}
+              </div>
+              <div>
+                <span class="text-xs font-bold ${isChecked ? 'text-slate-100' : 'text-slate-400'}">
+                  ${name} ${isYou ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">(' + (currentLang === 'UR' ? 'Aap' : 'You') + ')</span>' : ''}
+                </span>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-mono font-bold ${isChecked ? 'text-emerald-400' : 'text-slate-500'}">
+                ${shareText}
+              </span>
+              <span class="text-[9px] ${isChecked ? 'text-emerald-400/80 font-medium' : 'text-slate-500'} block">
+                ${statusText}
+              </span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleSplitMember(name) {
+      if (selectedSplitMembers.includes(name)) {
+        if (selectedSplitMembers.length === 1) {
+          alert('Kam az kam aik member ko tick rakhna zaroori hai!');
+          return;
+        }
+        selectedSplitMembers = selectedSplitMembers.filter(m => m !== name);
+      } else {
+        selectedSplitMembers.push(name);
+      }
+      updateSimpleDisplay();
+    }
+
+    function selectAllSplitMembers() {
+      const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
+      selectedSplitMembers = [...grp.members];
+      updateSimpleDisplay();
+    }
+
+    function selectOnlyYouSplit() {
+      selectedSplitMembers = [currentActiveUser];
+      updateSimpleDisplay();
+    }
+
+    // Keypad Logic
+    function pressNum(d) {
+      if (simpleCents >= 990000000) return;
+      simpleCents = simpleCents * 10 + d;
+      updateSimpleDisplay();
+    }
+    function backspaceNum() {
+      simpleCents = Math.floor(simpleCents / 10);
+      updateSimpleDisplay();
+    }
+    function clearNum() {
+      simpleCents = 0;
+      updateSimpleDisplay();
+    }
+
+    function updateSimpleDisplay() {
+      const num = (simpleCents / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      document.getElementById('simple-display').innerText = num;
+      
+      const total = simpleCents / 100;
+      const count = selectedSplitMembers.length;
+      const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
+
+      if (count === 0) {
+        document.getElementById('simple-per-person').innerText = `⚠️ Kam az kam 1 member ko tick karein`;
+      } else if (count === 1) {
+        const singleName = selectedSplitMembers[0];
+        const displayName = singleName === currentActiveUser ? 'Aap ne' : singleName;
+        document.getElementById('simple-per-person').innerText = `🎯 100% Hisab: ${displayName} ne poora wapas karna hai ${currentCurrency.symbol} ${num}`;
+      } else if (count === grp.members.length) {
+        const each = ((total / count)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('simple-per-person').innerText = `👉 Split ${count} ways (Barabar) = ${currentCurrency.symbol} ${each} each`;
+      } else {
+        const each = ((total / count)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        document.getElementById('simple-per-person').innerText = `👉 Split ${count} logon mein = ${currentCurrency.symbol} ${each} each`;
+      }
+
+      if (payerMode === 'multi') updateMultiPayerMath();
+      renderSplitCheckpoints();
+    }
+
+    function setPayerMode(mode) {
+      payerMode = mode;
+      ['single', 'multi', 'kitty'].forEach(m => {
+        const btn = document.getElementById('payer-mode-' + m);
+        if (m === mode) {
+          btn.className = "py-1.5 rounded-lg text-xs font-black bg-emerald-500 text-slate-950 transition";
+        } else {
+          btn.className = "py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-200 transition";
+        }
+      });
+
+      const multiBox = document.getElementById('multi-payer-box');
+      if (mode === 'multi') {
+        multiBox.classList.remove('hidden');
+        renderDynamicPayers();
+      } else {
+        multiBox.classList.add('hidden');
+      }
+
+      if (mode === 'kitty') {
+        const grp = groups.find(g => g.id === addBillGroupId);
+        alert(`💰 Bill will be deducted straight from ${grp ? grp.name : 'group'}'s Shared Kitty Pool (${formatMoney(grp ? grp.kittyBalance : 0)} left). Nobody owes anyone!`);
+      }
+    }
+
+    // SAVE BILL: Commits to the specific folder!
+    function saveSimpleBill() {
+      const totalAmount = simpleCents / 100;
+      if (totalAmount <= 0) {
+        alert('Please enter a bill amount greater than 0.');
+        return;
+      }
+
+      const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
+
+      if (selectedSplitMembers.length === 0) {
+        alert('Kam az kam 1 member ko hisab mein tick karein!');
+        return;
+      }
+
+      const formattedTotal = formatMoney(totalAmount);
+      const category = document.getElementById('custom-item-input').value.trim() || grp.category;
+      
+      let billPayers = [];
+      if (payerMode === 'kitty') {
+        if (totalAmount > (grp.kittyBalance || 0)) {
+          alert(`⚠️ Kitty pool balance (${formatMoney(grp.kittyBalance || 0)}) is less than bill (${formattedTotal})! Top up kitty first.`);
+          return;
+        }
+        grp.kittyBalance -= totalAmount;
+      } else if (payerMode === 'multi') {
+        const sum = multiPayers.reduce((acc, p) => acc + (p.amount || 0), 0);
+        const diff = Math.abs(totalAmount - sum);
+        if (diff > 0.05) {
+          alert(`⚠️ Amount Mismatch!
+Paid amounts (${formatMoney(sum)}) must equal total bill (${formattedTotal}).`);
+          return;
+        }
+        billPayers = multiPayers.filter(p => p.amount > 0).map(p => ({ ...p }));
+      } else {
+        billPayers = [{ name: currentActiveUser, amount: totalAmount }];
+      }
+
+      const isRecurring = document.getElementById('bill-is-recurring') ? document.getElementById('bill-is-recurring').checked : false;
+
+      const billNotes = document.getElementById('bill-notes-input') ? document.getElementById('bill-notes-input').value.trim() : '';
+      const newBill = {
+        id: 'bill_' + Date.now(),
+        groupId: grp.id,
+        title: category,
+        category: category,
+        amount: totalAmount,
+        payerMode: payerMode,
+        payers: billPayers,
+        splitWays: selectedSplitMembers.length,
+        splitMembers: [...selectedSplitMembers],
+        notes: billNotes,
+        receiptPhoto: attachedReceiptDataUrl,
+        isRecurring: isRecurring,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        date: 'Today',
+      };
+      // Reset inputs
+      if (document.getElementById('bill-notes-input')) document.getElementById('bill-notes-input').value = '';
+      removeAttachedReceipt();
+      if (document.getElementById('bill-is-recurring')) {
+        document.getElementById('bill-is-recurring').checked = false;
+      }
+      grp.expenses.unshift(newBill);
+
+      // Add to Activity Feed
+      const alertMsg = `${currentActiveUser} added bill "${category}" for ${formattedTotal} in folder "${grp.name}". Members (${grp.members.join(', ')}) notified.`;
+      activityLog.unshift({
+        id: 'act_' + Date.now(),
+        groupId: grp.id,
+        groupName: grp.name,
+        icon: grp.icon,
+        text: alertMsg,
+        time: 'Just now',
+        membersNotified: [...grp.members]
+      });
+
+      // Reset
+      simpleCents = 0;
+      updateSimpleDisplay();
+      activeFolderId = grp.id;
+      recalculateAllBalances();
+
+      alert(`🎉 Bill "${category}" for ${formattedTotal} has been saved in folder "${grp.name}"!`);
+      switchScreen('home');
+    }
+
+    function deleteBillFromFolder(groupId, billId) {
+      const grp = groups.find(g => g.id === groupId);
+      if (!grp) return;
+      const billIndex = grp.expenses.findIndex(b => b.id === billId);
+      if (billIndex === -1) return;
+
+      const deletedBill = grp.expenses[billIndex];
+      lastDeletedBill = { bill: { ...deletedBill }, groupId: groupId, originalIndex: billIndex };
+      trashExpenses.unshift({ ...deletedBill, originalGroupId: groupId, deletedAt: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) });
+
+      grp.expenses.splice(billIndex, 1);
+      recalculateAllBalances();
+      saveAppState();
+      updateTrashCount();
+      showUndoToast(`🗑️ Bill "${deletedBill.title}" deleted!`);
+    }
+
+    // ==========================================
+    // ✏️ EDIT BILL MODAL (Specific to that bill's folder)
+    // ==========================================
+    let editingBillRef = null;
+
+    function openEditBillModal(billId, groupId) {
+      const grp = groups.find(g => g.id === groupId);
+      if (!grp) return;
+      const bill = grp.expenses.find(b => b.id === billId);
+      if (!bill) return;
+
+      editingBillRef = { bill, group: grp };
+
+      document.getElementById('edit-bill-id').value = bill.id;
+      document.getElementById('edit-bill-group-id').value = grp.id;
+      document.getElementById('edit-bill-folder-name').innerText = `${grp.icon} ${grp.name}`;
+      document.getElementById('edit-bill-title-input').value = bill.title;
+      document.getElementById('edit-bill-amount-input').value = bill.amount;
+      document.getElementById('edit-bill-curr-symbol').innerText = currentCurrency.symbol;
+
+      // Render Payers (Folder members only)
+      const payersContainer = document.getElementById('edit-bill-payers-container');
+      payersContainer.innerHTML = grp.members.map(m => {
+        const found = bill.payers ? bill.payers.find(p => p.name === m) : null;
+        const amt = found ? found.amount : 0;
+        return `
+          <div class="flex items-center justify-between text-xs bg-slate-900 p-1.5 rounded-xl border border-slate-750">
+            <span class="font-bold text-slate-200">${m}:</span>
+            <div class="flex items-center gap-1">
+              <span class="text-emerald-400 font-bold">${currentCurrency.symbol}</span>
+              <input type="number" id="edit-payer-${m}" value="${amt}" step="any" class="w-24 bg-slate-950 border border-slate-700 rounded-lg px-2 py-1 text-slate-100 font-mono text-xs focus:outline-none focus:border-emerald-500">
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Render Checkpoints (Folder members only)
+      const checkpointsContainer = document.getElementById('edit-bill-checkpoints-container');
+      checkpointsContainer.innerHTML = grp.members.map(m => {
+        const isChecked = bill.splitMembers.includes(m);
+        return `
+          <label class="flex items-center justify-between p-2 rounded-xl border border-slate-750 bg-slate-900 text-xs font-bold text-slate-200 cursor-pointer">
+            <span>${m}</span>
+            <input type="checkbox" id="edit-chk-${m}" ${isChecked ? 'checked' : ''} class="w-4 h-4 rounded accent-emerald-500">
+          </label>
+        `;
+      }).join('');
+
+      const modal = document.getElementById('edit-bill-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeEditBillModal() {
+      const modal = document.getElementById('edit-bill-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      editingBillRef = null;
+    }
+
+    function saveEditedBill() {
+      if (!editingBillRef) return;
+      const { bill, group } = editingBillRef;
+
+      const newTitle = document.getElementById('edit-bill-title-input').value.trim() || bill.title;
+      const newAmount = parseFloat(document.getElementById('edit-bill-amount-input').value);
+
+      if (isNaN(newAmount) || newAmount <= 0) {
+        alert('Please enter a valid bill amount.');
+        return;
+      }
+
+      // Collect payers
+      const newPayers = [];
+      let sumPayers = 0;
+      group.members.forEach(m => {
+        const inp = document.getElementById('edit-payer-' + m);
+        const val = inp ? (parseFloat(inp.value) || 0) : 0;
+        if (val > 0) {
+          newPayers.push({ name: m, amount: val });
+          sumPayers += val;
+        }
+      });
+
+      if (Math.abs(sumPayers - newAmount) > 0.05) {
+        alert(`⚠️ Paid amounts sum (${formatMoney(sumPayers)}) must match total bill (${formatMoney(newAmount)})!`);
+        return;
+      }
+
+      // Collect checkpoints
+      const newSplitMembers = [];
+      group.members.forEach(m => {
+        const chk = document.getElementById('edit-chk-' + m);
+        if (chk && chk.checked) newSplitMembers.push(m);
+      });
+
+      if (newSplitMembers.length === 0) {
+        alert('At least 1 member must share this bill.');
+        return;
+      }
+
+      // Update bill
+      bill.title = newTitle;
+      bill.amount = newAmount;
+      bill.payers = newPayers;
+      bill.payerMode = newPayers.length > 1 ? 'multi' : 'single';
+      bill.splitMembers = newSplitMembers;
+      bill.splitWays = newSplitMembers.length;
+
+      // Add activity
+      activityLog.unshift({
+        id: 'act_' + Date.now(),
+        groupId: group.id,
+        groupName: group.name,
+        icon: group.icon,
+        text: `${currentActiveUser} edited bill "${bill.title}" (${formatMoney(newAmount)}) in folder "${group.name}".`,
+        time: 'Just now',
+        membersNotified: [...group.members]
+      });
+
+      closeEditBillModal();
+      recalculateAllBalances();
+      alert(`✅ Bill "${bill.title}" updated successfully in folder "${group.name}"!`);
+    }
+
+    // ==========================================
+    // PAY BACK SETTLEMENTS & BROADCAST ALERTS
+    // ==========================================
+    function renderSettlements() {
+      const container = document.getElementById('settlements-container');
+      if (!container) return;
+
+      const filtersContainer = document.getElementById('pay-folder-filters');
+      if (filtersContainer) {
+        filtersContainer.innerHTML = `
+          <button onclick="selectFolder('all')" class="px-2.5 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition border ${
+            activeFolderId === 'all' ? 'bg-emerald-500 text-slate-950 border-emerald-400' : 'bg-slate-850 text-slate-300 border-slate-750'
+          }">
+            All Folders
+          </button>
+        ` + groups.map(g => `
+          <button onclick="selectFolder('${g.id}')" class="px-2.5 py-1 rounded-xl text-xs font-bold whitespace-nowrap transition border flex items-center gap-1 ${
+            activeFolderId === g.id ? 'bg-emerald-500 text-slate-950 border-emerald-400' : 'bg-slate-850 text-slate-300 border-slate-750'
+          }">
+            <span>${g.icon}</span>
+            <span>${g.name}</span>
+          </button>
+        `).join('');
+      }
+
+      let targetGroups = activeFolderId === 'all' ? groups : [groups.find(g => g.id === activeFolderId)].filter(Boolean);
+
+      const allTransfers = [];
+      targetGroups.forEach(grp => {
+        if (!simplifyDebtsMode) {
+          // Direct bilateral debts (Non-simplified)
+          const bilateral = calculateDirectBilateralDebts(grp);
+          bilateral.forEach(t => allTransfers.push(t));
+        } else {
+          // Simplified Min-Cash-Flow debts
+          const bMap = calculateGroupBalances(grp);
+          const creditors = [];
+          const debtors = [];
+
+          for (const [member, net] of Object.entries(bMap)) {
+            if (net > 0.01) creditors.push({ member, amount: net });
+            else if (net < -0.01) debtors.push({ member, amount: -net });
+          }
+
+          creditors.sort((a, b) => b.amount - a.amount);
+          debtors.sort((a, b) => b.amount - a.amount);
+
+          let cIdx = 0, dIdx = 0;
+          while (cIdx < creditors.length && dIdx < debtors.length) {
+            const c = creditors[cIdx];
+            const d = debtors[dIdx];
+            const settleAmt = Math.min(c.amount, d.amount);
+
+            allTransfers.push({
+              groupId: grp.id,
+              groupName: grp.name,
+              groupIcon: grp.icon,
+              from: d.member,
+              to: c.member,
+              amount: settleAmt
+            });
+
+            c.amount -= settleAmt;
+            d.amount -= settleAmt;
+
+            if (c.amount < 0.01) cIdx++;
+            if (d.amount < 0.01) dIdx++;
+          }
+        }
+      });
+
+      if (allTransfers.length === 0) {
+        container.innerHTML = `
+          <div class="bg-slate-850 border border-slate-800 rounded-3xl p-8 text-center space-y-2">
+            <span class="text-4xl block">🎉</span>
+            <h3 class="text-base font-black text-slate-100">All Settled Up!</h3>
+            <p class="text-xs text-slate-400">Nobody owes anyone anything in this view.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = allTransfers.map((t, index) => {
+        const isFromActive = t.from === currentActiveUser;
+        const isToActive = t.to === currentActiveUser;
+
+        let headline = `${t.from} needs to pay`;
+        let targetName = t.to;
+        if (isFromActive) {
+          headline = currentLang === 'UR' ? 'Aap ne dena hai' : 'You need to pay';
+        } else if (isToActive) {
+          headline = currentLang === 'UR' ? `${t.from} ne aapko dena hai` : `${t.from} pays you`;
+        }
+
+        return `
+          <div class="bg-slate-850 border border-slate-800 rounded-3xl p-5 space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-[10px] font-black uppercase text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20 mb-1 inline-block">
+                  ${t.groupIcon} ${t.groupName}
+                </span>
+                <p class="text-xs font-bold text-slate-400">${headline}</p>
+                <h3 class="text-2xl font-black text-slate-100">${targetName}</h3>
+              </div>
+              <div class="text-right">
+                <span class="text-2xl font-black ${isFromActive ? 'text-rose-400' : 'text-emerald-400'} font-mono balance-mask">
+                  ${formatMoney(t.amount)}
+                </span>
+                <p class="text-[10px] text-slate-400 font-bold">Settlement</p>
+              </div>
+            </div>
+
+            <!-- WhatsApp Nudge Button -->
+            <button onclick="executeWhatsAppShare('${isFromActive ? t.to : t.from}', '', '${t.groupId}')" class="w-full py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/15 transition">
+              <span>💬 ${isToActive ? `Remind ${t.from} on WhatsApp` : `Share with ${t.to} on WhatsApp`}</span>
+            </button>
+
+            <!-- Partial Settlement & Payment Proof Row -->
+            <div class="bg-slate-900/80 p-2.5 rounded-2xl border border-slate-750 space-y-2">
+              <div class="flex items-center justify-between text-[11px]">
+                <span class="text-slate-400 font-bold">Amount to Pay:</span>
+                <div class="flex items-center gap-1">
+                  <button type="button" onclick="setPartialAmt(${index}, ${t.amount})" class="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 text-[10px] font-black">100% Full</button>
+                  <button type="button" onclick="setPartialAmt(${index}, ${t.amount / 2})" class="px-2 py-0.5 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold">50% Half</button>
+                  <button type="button" onclick="setPartialAmt(${index}, ${t.amount / 4})" class="px-2 py-0.5 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold">25%</button>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <div class="flex items-center gap-1 bg-slate-950 border border-slate-750 rounded-xl px-2 py-1.5 flex-1">
+                  <span class="text-xs font-bold text-emerald-400">${currentCurrency.symbol}</span>
+                  <input id="settle-amt-${index}" type="number" step="any" value="${t.amount}" class="w-full bg-transparent text-xs text-slate-100 font-mono font-bold focus:outline-none">
+                </div>
+                <input id="settle-proof-${index}" type="text" placeholder="Txn Ref / JazzCash # (Optional)" class="w-36 bg-slate-950 border border-slate-750 rounded-xl px-2 py-1.5 text-[10px] text-slate-200 placeholder-slate-500 focus:outline-none">
+              </div>
+            </div>
+
+            <!-- 1-Tap Instant Payment Deep Links -->
+            <div class="grid grid-cols-4 gap-1.5 pt-1">
+              <a href="venmo://paycharge?txn=pay&amount=${t.amount}&note=FairShare%20Settlement" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-[10px] font-black text-blue-400 border border-slate-700/70 text-center transition">
+                Venmo
+              </a>
+              <a href="https://cash.app/$${targetName.toLowerCase()}/${t.amount}" target="_blank" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-[10px] font-black text-emerald-400 border border-slate-700/70 text-center transition">
+                Cash App
+              </a>
+              <a href="https://revolut.me/${targetName.toLowerCase()}" target="_blank" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-[10px] font-black text-indigo-400 border border-slate-700/70 text-center transition">
+                Revolut
+              </a>
+              <a href="upi://pay?pa=${targetName.toLowerCase()}@upi&am=${t.amount}&pn=${targetName}" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 text-[10px] font-black text-amber-400 border border-slate-700/70 text-center transition">
+                UPI
+              </a>
+            </div>
+
+            <!-- Mark Paid In Person Button (Triggers Group Alert!) -->
+            <button onclick="executeSettlementWithCustomAmount(${index}, '${t.from}', '${t.to}', ${t.amount}, '${t.groupId}')" class="w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black shadow-lg shadow-emerald-500/20 active:scale-95 transition">
+              ✓ Settle Amount & Broadcast Alert
+            </button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Mark paid with live group alert broadcast!
+    let lastBroadcastData = null;
+
+    function markTransferSettledWithBroadcast(from, to, amount, groupId, proof) {
+      const grp = groups.find(g => g.id === groupId) || groups[0];
+      const proofText = proof ? ` (Ref: ${proof})` : '';
+
+      // Add settlement bill into this specific group
+      grp.expenses.push({
+        id: 'settle_' + Date.now(),
+        groupId: grp.id,
+        title: `Payment: ${from} ➔ ${to}${proofText}`,
+        category: 'Settlement',
+        amount: amount,
+        payerMode: 'single',
+        payers: [{ name: from, amount: amount }],
+        splitWays: 1,
+        splitMembers: [to],
+        proof: proof || '',
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        date: 'Today',
+      });
+
+      // Add to Activity Feed
+      const otherMembers = grp.members.filter(m => m !== from);
+      const alertMsg = `${from} paid ${formatMoney(amount)} to ${to} in "${grp.name}"${proofText}. Group members (${otherMembers.join(', ')}) notified.`;
+      
+      activityLog.unshift({
+        id: 'act_' + Date.now(),
+        groupId: grp.id,
+        groupName: grp.name,
+        icon: '💸',
+        text: alertMsg,
+        time: 'Just now',
+        membersNotified: [...grp.members]
+      });
+
+      lastBroadcastData = { from, to, amount, group: grp, proof: proof || '' };
+
+      recalculateAllBalances();
+
+      // Open Broadcast Modal
+      openPaymentBroadcastModal(from, to, amount, grp, proof);
+    }
+
+    function openPaymentBroadcastModal(from, to, amount, group, proof) {
+      const proofLine = proof ? ` (Ref: ${proof})` : '';
+      document.getElementById('broadcast-subtext').innerText = `${from} has paid ${formatMoney(amount)} to ${to} in "${group.name}"${proofLine}.`;
+
+      const badgesContainer = document.getElementById('broadcast-members-badges');
+      badgesContainer.innerHTML = group.members.map(m => `
+        <span class="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-400 font-bold text-[10px] border border-emerald-500/30">
+          ✓ ${m} Notified
+        </span>
+      `).join('');
+
+      // Check remaining debts in this folder
+      const bMap = calculateGroupBalances(group);
+      const remainingDebts = [];
+      for (const [m, net] of Object.entries(bMap)) {
+        if (net > 0.01) remainingDebts.push(`${m} is still owed ${formatMoney(net)}`);
+      }
+      document.getElementById('broadcast-remaining-text').innerText = remainingDebts.length > 0 
+        ? `Status in ${group.name}: ${remainingDebts.join(' • ')}`
+        : `All settled up in ${group.name}!`;
+
+      const modal = document.getElementById('payment-broadcast-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closePaymentBroadcastModal() {
+      const modal = document.getElementById('payment-broadcast-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function triggerBroadcastWhatsApp() {
+      if (!lastBroadcastData) return;
+      const { from, to, amount, group } = lastBroadcastData;
+
+      const origin = window.location.origin && window.location.origin !== 'null' ? window.location.origin + window.location.pathname : 'https://fairshare.app';
+      const folderLink = `${origin}?folder=${encodeURIComponent(group.id)}`;
+
+      const text = `📢 FairShare Group Alert: ${group.name}
+
+${from} has recorded a payment of ${formatMoney(amount)} to ${to}!
+
+Group Members: ${group.members.join(', ')}
+All members can view their updated live statement & recent bills here:
+${folderLink}
+
+(Zero login required • Works in any browser!)`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+    }
+
+    function triggerBroadcastEmail() {
+      if (!lastBroadcastData) return;
+      const { from, to, amount, group } = lastBroadcastData;
+
+      const subject = `Payment Alert: ${from} paid ${to} in ${group.name}`;
+      const body = `Hi Team,
+
+${from} has officially recorded a payment of ${formatMoney(amount)} to ${to} in folder "${group.name}".
+
+Group members: ${group.members.join(', ')}
+
+Check your live balances:
+https://fairshare.app/?folder=${group.id}
+
+Thank you,
+FairShare (100% Free • Zero Limits)`;
+
+      window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // ==========================================
+    // 🔔 ACTIVITY FEED MODAL
+    // ==========================================
+    function openActivityModal() {
+      const container = document.getElementById('activity-list-container');
+      if (activityLog.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-500 italic text-center py-4">No recent activity.</p>`;
+      } else {
+        container.innerHTML = activityLog.map(act => `
+          <div class="bg-slate-850 border border-slate-750 p-2.5 rounded-xl space-y-1">
+            <div class="flex items-center justify-between text-[10px]">
+              <span class="font-black text-emerald-400">${act.icon} ${act.groupName}</span>
+              <span class="text-slate-400 font-mono">${act.time}</span>
+            </div>
+            <p class="text-xs text-slate-200 leading-snug">${act.text}</p>
+            <p class="text-[9px] text-slate-400">👥 Notified: ${act.membersNotified ? act.membersNotified.join(', ') : 'All members'}</p>
+          </div>
+        `).join('');
+      }
+
+      document.getElementById('activity-badge').innerText = '0';
+      const modal = document.getElementById('activity-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeActivityModal() {
+      const modal = document.getElementById('activity-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function updateActivityBadge() {
+      const badge = document.getElementById('activity-badge');
+      if (badge) badge.innerText = activityLog.length > 0 ? String(activityLog.length) : '0';
+    }
+
+    // ==========================================
+    // 📁 CREATE NEW FOLDER / GROUP MODAL
+    // ==========================================
+    function openNewFolderModal() {
+      document.getElementById('new-folder-name-input').value = '';
+      document.getElementById('new-folder-members-input').value = `${currentActiveUser}, `;
+      const modal = document.getElementById('new-folder-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeNewFolderModal() {
+      const modal = document.getElementById('new-folder-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function selectNewFolderEmoji(emoji) {
+      document.getElementById('new-folder-emoji').value = emoji;
+    }
+
+    function createNewFolder() {
+      const name = document.getElementById('new-folder-name-input').value.trim();
+      const emoji = document.getElementById('new-folder-emoji').value || '📁';
+      const membersStr = document.getElementById('new-folder-members-input').value.trim();
+
+      if (!name) {
+        alert('Please enter a folder name.');
+        return;
+      }
+
+      const rawMembers = membersStr.split(',').map(m => m.trim()).filter(Boolean);
+      if (!rawMembers.includes(currentActiveUser)) {
+        rawMembers.unshift(currentActiveUser);
+      }
+      if (rawMembers.length < 2) {
+        alert('Please add at least 2 members for this folder.');
+        return;
+      }
+
+      // Add members to userProfiles
+      rawMembers.forEach(m => {
+        if (!userProfiles[m]) {
+          userProfiles[m] = { name: m, phone: '', email: '', notifyWhatsApp: true, notifyEmail: true };
+        }
+      });
+
+      const newGrpId = 'grp_' + Date.now();
+      const newGroup = {
+        id: newGrpId,
+        name: name,
+        category: name,
+        icon: emoji,
+        members: rawMembers,
+        kittyBalance: 0,
+        expenses: []
+      };
+
+      groups.push(newGroup);
+      activeFolderId = newGrpId;
+      addBillGroupId = newGrpId;
+
+      closeNewFolderModal();
+      renderUserPerspectiveSelect();
+      recalculateAllBalances();
+      saveAppState();
+      showToast(`Folder "${name}" created with ${rawMembers.length} members!`);
+    }
+
+    // ==========================================
+    // USER PERSPECTIVE & GUEST SIMULATOR SYSTEM
+    // ==========================================
+    function switchUserPerspective(userName) {
+      if (!userName) return;
+      currentActiveUser = userName;
+      renderUserPerspectiveSelect();
+      recalculateAllBalances();
+    }
+
+    function renderUserPerspectiveSelect() {
+      const allMembersSet = new Set();
+      groups.forEach(g => g.members.forEach(m => allMembersSet.add(m)));
+      const allMembers = Array.from(allMembersSet);
+
+      const userSelect = document.getElementById('user-view-select');
+      if (userSelect) {
+        userSelect.innerHTML = allMembers.map(m => 
+          `<option value="${m}" ${m === currentActiveUser ? 'selected' : ''}>${m}${m === 'Usman' ? ' (Aap / You)' : ''}</option>`
+        ).join('');
+      }
+
+      // Hub WhatsApp dropdown
+      const hubWa = document.getElementById('hub-wa-member-select');
+      if (hubWa) {
+        const others = allMembers.filter(m => m !== currentActiveUser);
+        hubWa.innerHTML = others.map(m => `<option value="${m}">Dost: ${m}</option>`).join('');
+      }
+
+      // Invite Modal dropdowns
+      const invWa = document.getElementById('invite-wa-member-select');
+      if (invWa) {
+        invWa.innerHTML = allMembers.filter(m => m !== currentActiveUser).map(m => `<option value="${m}">${m}</option>`).join('');
+      }
+      const invEmail = document.getElementById('invite-email-member-select');
+      if (invEmail) {
+        invEmail.innerHTML = allMembers.filter(m => m !== currentActiveUser).map(m => `<option value="${m}">${m}</option>`).join('');
+      }
+
+      renderAddBillFolderSelect();
+      updateInviteWaPreview();
+    }
+
+    function checkUrlJoinParams() {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const userParam = params.get('user') || params.get('join') || params.get('u');
+        const folderParam = params.get('folder');
+
+        if (userParam) {
+          const cleanName = decodeURIComponent(userParam).trim();
+          if (cleanName) {
+            currentActiveUser = cleanName;
+          }
+        }
+        if (folderParam) {
+          const found = groups.find(g => g.id === folderParam);
+          if (found) activeFolderId = found.id;
+        }
+      } catch (e) {
+        console.error('URL params error:', e);
+      }
+    }
+
+    // ==========================================
+    // ACCOUNT & INVITE MODALS
+    // ==========================================
+    function openAccountModal() {
+      const prof = userProfiles[currentActiveUser] || { name: currentActiveUser, phone: '', email: '', notifyWhatsApp: true, notifyEmail: true };
+      document.getElementById('acc-name-input').value = prof.name || currentActiveUser;
+      document.getElementById('acc-phone-input').value = prof.phone || '';
+      document.getElementById('acc-email-input').value = prof.email || '';
+      document.getElementById('acc-notify-wa').checked = prof.notifyWhatsApp !== false;
+      document.getElementById('acc-notify-email').checked = prof.notifyEmail !== false;
+
+      const modal = document.getElementById('account-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeAccountModal() {
+      const modal = document.getElementById('account-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function saveAccountSettings() {
+      const newName = document.getElementById('acc-name-input').value.trim() || currentActiveUser;
+      const phone = document.getElementById('acc-phone-input').value.trim();
+      const email = document.getElementById('acc-email-input').value.trim();
+      const notifyWa = document.getElementById('acc-notify-wa').checked;
+      const notifyEmail = document.getElementById('acc-notify-email').checked;
+
+      userProfiles[newName] = { name: newName, phone, email, notifyWhatsApp: notifyWa, notifyEmail: notifyEmail };
+
+      if (newName !== currentActiveUser) {
+        groups.forEach(g => {
+          const idx = g.members.indexOf(currentActiveUser);
+          if (idx !== -1) g.members[idx] = newName;
+        });
+        currentActiveUser = newName;
+      }
+
+      closeAccountModal();
+      renderUserPerspectiveSelect();
+      recalculateAllBalances();
+      alert(`✅ Profile updated for ${newName}!
+Notifications configured for WhatsApp (${phone || 'not set'}) & Email.`);
+    }
+
+    function openInviteModal() {
+      renderUserPerspectiveSelect();
+      setInviteTab('wa');
+      const modal = document.getElementById('invite-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeInviteModal() {
+      const modal = document.getElementById('invite-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function setInviteTab(tab) {
+      ['wa', 'email', 'qr'].forEach(t => {
+        const tabEl = document.getElementById('inv-tab-' + t);
+        const btnEl = document.getElementById('btn-inv-' + t);
+        if (tabEl) tabEl.classList.toggle('hidden', t !== tab);
+        if (btnEl) {
+          if (t === tab) {
+            btnEl.className = "py-1 rounded-lg text-xs font-black bg-emerald-500 text-slate-950 transition";
+          } else {
+            btnEl.className = "py-1 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-200 transition";
+          }
+        }
+      });
+      if (tab === 'wa') updateInviteWaPreview();
+    }
+
+    function getMemberJoinLink(member, groupId) {
+      let base = window.location.origin;
+      if (!base || base === 'null' || window.location.protocol === 'file:') {
+        base = 'http://localhost:8080';
+      }
+      const path = (window.location.pathname && window.location.pathname.endsWith('.html')) 
+        ? window.location.pathname 
+        : '/preview.html';
+      const folderParam = groupId ? '&folder=' + encodeURIComponent(groupId) : '';
+      return `${base}${path}?user=${encodeURIComponent(member || currentActiveUser)}${folderParam}`;
+    }
+
+    function updateInviteWaPreview() {
+      const select = document.getElementById('invite-wa-member-select');
+      if (!select) return;
+      const member = select.value || 'Friend';
+
+      // Find net across folders
+      let net = 0;
+      groups.forEach(g => {
+        if (g.members.includes(member)) {
+          const b = calculateGroupBalances(g);
+          net += (b[member] || 0);
+        }
+      });
+
+      const joinLink = getMemberJoinLink(member);
+      const msg = `Hey ${member}! Join our FairShare group ledger to see your live stats & bills:
+
+📊 Net Status: ${net >= 0 ? '+' : '-'}${formatMoney(Math.abs(net))}
+🔗 Open live ledger: ${joinLink}
+
+(Zero login required • Works in any browser!)`;
+
+      const previewEl = document.getElementById('invite-wa-msg-preview');
+      if (previewEl) previewEl.innerText = msg;
+    }
+
+    function triggerSendWhatsAppInvite() {
+      const select = document.getElementById('invite-wa-member-select');
+      const member = select ? select.value : '';
+      const phone = document.getElementById('invite-wa-phone-input').value.trim();
+      executeWhatsAppShare(member, phone);
+    }
+
+    function executeWhatsAppShare(member, phone, groupId) {
+      if (!member) {
+        alert('Please select a friend first.');
+        return;
+      }
+
+      let net = 0;
+      let targetGroup = groupId ? groups.find(g => g.id === groupId) : null;
+      if (targetGroup) {
+        const b = calculateGroupBalances(targetGroup);
+        net = b[member] || 0;
+      } else {
+        groups.forEach(g => {
+          if (g.members.includes(member)) {
+            const b = calculateGroupBalances(g);
+            net += (b[member] || 0);
+          }
+        });
+      }
+
+      let statusMsg = net > 0.01 
+        ? `You are owed ${formatMoney(net)} back!`
+        : (net < -0.01 ? `Your outstanding balance to pay is ${formatMoney(Math.abs(net))}.` : `All settled up (Rs 0.00).`);
+
+      const joinUrl = getMemberJoinLink(member, groupId);
+      const text = `Assalam-o-Alaikum ${member}! 🤝
+Here is your live FairShare statement from ${currentActiveUser}${targetGroup ? ' in "' + targetGroup.name + '"' : ''}:
+
+💰 Balance: ${statusMsg}
+
+📱 View Live Ledger & Bills: ${joinUrl}
+
+No app install or sign-up needed. Open link to track expenses in real-time!`;
+
+      let url = 'https://wa.me/';
+      if (phone) {
+        const cleanPhone = phone.replace(/[^0-9]/g, '');
+        url += `${cleanPhone}?text=${encodeURIComponent(text)}`;
+      } else {
+        url += `?text=${encodeURIComponent(text)}`;
+      }
+      window.open(url, '_blank');
+    }
+
+    function triggerSendEmailInvite() {
+      const select = document.getElementById('invite-email-member-select');
+      const member = select ? select.value : '';
+      const email = document.getElementById('invite-email-input').value.trim();
+      executeEmailShare(member, email);
+    }
+
+    function executeEmailShare(member, email) {
+      if (!member) {
+        alert('Please select a friend first.');
+        return;
+      }
+      const joinUrl = getMemberJoinLink(member);
+      const subject = `FairShare Statement & Live Ledger for ${member}`;
+      const body = `Hi ${member},
+
+Here is your real-time expense statement from ${currentActiveUser} on FairShare.
+
+You can inspect every bill, add new payments, and view detailed charts directly by clicking your personalized link:
+${joinUrl}
+
+Thank you,
+FairShare (100% Free • Zero Limits)`;
+
+      window.location.href = `mailto:${encodeURIComponent(email || '')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    function sendHubWhatsAppInvite() {
+      const select = document.getElementById('hub-wa-member-select');
+      const member = select ? select.value : '';
+      executeWhatsAppShare(member, '');
+    }
+
+    function sendHubEmailInvite() {
+      const emailInput = document.getElementById('hub-email-input');
+      const email = emailInput ? emailInput.value.trim() : '';
+      executeEmailShare('Friend', email);
+    }
+
+    function copyMemberInviteLink() {
+      const link = getMemberJoinLink(currentActiveUser);
+      navigator.clipboard.writeText(link);
+      alert(`✅ Invite link copied to clipboard!
+${link}`);
+    }
+
+    function copySimpleLink() {
+      const link = getMemberJoinLink(currentActiveUser);
+      navigator.clipboard.writeText(link);
+      alert(`✅ Link copied! Paste in WhatsApp or iMessage:
+${link}`);
+    }
+
+    function downloadSimpleCSV() {
+      let csv = "Folder,Date,Bill Name,Amount,Payers\n";
+      groups.forEach(g => {
+        g.expenses.forEach(b => {
+          const payers = b.payers ? b.payers.map(p => `${p.name}:${p.amount}`).join(';') : currentActiveUser;
+          csv += `"${g.name}",${b.date},"${b.title}",${b.amount},"${payers}"\n`;
+        });
+      });
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', 'My_Group_Expenses.csv');
+      a.click();
+    }
+
+    // ==========================================
+    // CHARTS, MEAL SPLITTER & MISC
+    // ==========================================
+    function renderChartsData() {
+      const container = document.getElementById('charts-categories-container');
+      if (!container) return;
+
+      const catTotals = {};
+      let grandTotal = 0;
+
+      groups.forEach(g => {
+        g.expenses.forEach(b => {
+          catTotals[b.title] = (catTotals[b.title] || 0) + b.amount;
+          grandTotal += b.amount;
+        });
+      });
+
+      const entries = Object.entries(catTotals).sort((a, b) => b[1] - a[1]);
+      if (entries.length === 0) {
+        container.innerHTML = `<div class="py-8 text-center text-slate-500 text-xs">No spending recorded yet.</div>`;
+        return;
+      }
+
+      container.innerHTML = entries.map(([cat, amt]) => {
+        const pct = grandTotal > 0 ? Math.round((amt / grandTotal) * 100) : 0;
+        return `
+          <div class="bg-slate-850 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <span class="font-bold text-slate-200">🏷️ ${cat}</span>
+              <span class="font-mono font-bold text-emerald-400 balance-mask">${formatMoney(amt)} (${pct}%)</span>
+            </div>
+            <div class="w-full bg-slate-900 rounded-full h-2">
+              <div class="bg-emerald-400 h-2 rounded-full" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Roulette Logic
+    let isSpinning = false;
+    function openRouletteModal() {
+      document.getElementById('roulette-modal').classList.remove('hidden');
+      document.getElementById('roulette-modal').classList.add('flex');
+    }
+    function closeRouletteModal() {
+      document.getElementById('roulette-modal').classList.add('hidden');
+      document.getElementById('roulette-modal').classList.remove('flex');
+    }
+    function startSpinAnimation() {
+      if (isSpinning) return;
+
+      const grp = groups.find(g => g.id === activeFolderId) || groups[0];
+      const members = grp.members;
+
+      if (!members || members.length < 2) {
+        showToast('Roulette requires at least 2 members in the active folder (' + grp.name + ').', '⚠️');
+        return;
+      }
+
+      isSpinning = true;
+      const nameEl = document.getElementById('roulette-winner-name');
+      const avatarEl = document.getElementById('roulette-avatar');
+      const statusEl = document.getElementById('roulette-status');
+      const btn = document.getElementById('roulette-spin-btn');
+
+      btn.disabled = true;
+      btn.innerText = 'Spinning... 🎲';
+      avatarEl.classList.add('spin-anim');
+
+      let counter = 0;
+      const interval = setInterval(() => {
+        nameEl.innerText = members[counter % members.length];
+        counter++;
+      }, 80);
+
+      setTimeout(() => {
+        clearInterval(interval);
+        avatarEl.classList.remove('spin-anim');
+        const winner = members[Math.floor(Math.random() * members.length)];
+        nameEl.innerText = winner;
+        avatarEl.innerText = '🎉';
+        statusEl.innerText = `Selected! ${winner} pays for coffee in "${grp.name}"!`;
+        btn.innerText = '🎲 Spin Again!';
+        btn.disabled = false;
+        isSpinning = false;
+      }, 1600);
+    }
+
+    // Meal Splitter
+    function renderKidFriendsRibbon() {
+      const container = document.getElementById('kid-friends-row');
+      const allMembersSet = new Set();
+      groups.forEach(g => g.members.forEach(m => allMembersSet.add(m)));
+      const members = Array.from(allMembersSet);
+
+      container.innerHTML = members.map(name => {
+        let total = 0;
+        mealDishes.forEach(d => {
+          if (d.eaters.includes(name)) {
+            total += d.price / d.eaters.length;
+          }
+        });
+        const isSelected = name === activeKid;
+        return `
+          <button type="button" onclick="selectKidFriend('${name}')" class="px-3.5 py-2 rounded-xl text-xs whitespace-nowrap font-black border transition ${
+            isSelected ? 'bg-purple-500 text-slate-950 border-2 border-purple-400 shadow-md' : 'bg-slate-850 text-slate-300 border-slate-700'
+          }">
+            <span>${name}</span>
+            <span class="ml-1 opacity-90 font-mono">(${formatMoney(total)})</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectKidFriend(name) {
+      activeKid = name;
+      renderKidFriendsRibbon();
+      renderKidDishes();
+    }
+
+    function toggleAddMealFriendBox() {
+      document.getElementById('new-meal-friend-box').classList.toggle('hidden');
+    }
+
+    function addCustomMealFriend() {
+      const input = document.getElementById('new-meal-friend-name');
+      const name = input.value.trim();
+      if (!name) return;
+
+      const grp = groups.find(g => g.id === activeFolderId) || groups[0];
+      if (!grp.members.includes(name)) grp.members.push(name);
+      activeKid = name;
+      renderKidFriendsRibbon();
+      input.value = '';
+      toggleAddMealFriendBox();
+      recalculateAllBalances();
+    }
+
+    function renderKidDishes() {
+      const el = document.getElementById('kid-dishes-container');
+      if (mealDishes.length === 0) {
+        el.innerHTML = `<div class="py-4 text-center text-slate-500 text-xs italic">No dishes added yet. Type a dish above and tap "+ Add"!</div>`;
+        return;
+      }
+
+      el.innerHTML = mealDishes.map(d => {
+        const eatersText = d.eaters.length === 0 
+          ? 'Tap to claim!' 
+          : d.eaters.length === 1 ? `Eaten by: ${d.eaters[0]}` : `Eaten by: ${d.eaters.join(' & ')} (${formatMoney(d.price / d.eaters.length)} each)`;
+        const isClaimedByActive = d.eaters.includes(activeKid);
+
+        return `
+          <div onclick="toggleKidDish('${d.id}')" class="p-3 rounded-2xl border cursor-pointer transition ${
+            isClaimedByActive ? 'bg-purple-950/30 border-purple-500/70' : 'bg-slate-850 border-slate-800'
+          } flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">${d.icon}</span>
+              <div>
+                <p class="font-bold text-sm text-slate-100">${d.name}</p>
+                <p class="text-[11px] text-purple-400 font-bold">${eatersText}</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="font-black text-sm text-slate-100 balance-mask">${formatMoney(d.price)}</span>
+              <button onclick="event.stopPropagation(); deleteKidDish('${d.id}')" class="text-slate-500 hover:text-rose-400 text-xs px-1">✕</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleKidDish(dishId) {
+      const dish = mealDishes.find(d => d.id === dishId);
+      if (!dish) return;
+      const idx = dish.eaters.indexOf(activeKid);
+      if (idx >= 0) dish.eaters.splice(idx, 1);
+      else dish.eaters.push(activeKid);
+      renderKidFriendsRibbon();
+      renderKidDishes();
+    }
+
+    function deleteKidDish(dishId) {
+      mealDishes = mealDishes.filter(d => d.id !== dishId);
+      renderKidFriendsRibbon();
+      renderKidDishes();
+    }
+
+    function addCustomDishToMeal() {
+      const name = document.getElementById('custom-dish-name').value.trim();
+      const price = parseFloat(document.getElementById('custom-dish-price').value);
+      if (!name || isNaN(price) || price <= 0) {
+        alert('Please enter dish name and price.');
+        return;
+      }
+      mealDishes.push({
+        id: 'dish_' + Date.now(),
+        name,
+        icon: '🍽️',
+        price,
+        eaters: [activeKid]
+      });
+      document.getElementById('custom-dish-name').value = '';
+      document.getElementById('custom-dish-price').value = '';
+      renderKidFriendsRibbon();
+      renderKidDishes();
+    }
+
+    function saveMealSplit() {
+      if (mealDishes.length === 0) {
+        showToast('Please add dishes to the table first.', '⚠️');
+        return;
+      }
+      const totalFood = mealDishes.reduce((acc, d) => acc + d.price, 0);
+      if (totalFood <= 0) {
+        showToast('Bill total must be greater than 0.', '⚠️');
+        return;
+      }
+
+      const memberSubtotals = {};
+      mealDishes.forEach(d => {
+        const claimers = (d.assigned && d.assigned.length > 0) ? d.assigned : [currentActiveUser];
+        const dishShare = d.price / claimers.length;
+        claimers.forEach(m => {
+          memberSubtotals[m] = (memberSubtotals[m] || 0) + dishShare;
+        });
+      });
+
+      const taxPct = (parseFloat(document.getElementById('meal-tax-input')?.value) || 0) / 100;
+      const tipPct = (parseFloat(document.getElementById('meal-tip-input')?.value) || 0) / 100;
+      const totalExtra = totalFood * (taxPct + tipPct);
+      const totalBill = totalFood + totalExtra;
+
+      const finalShares = {};
+      let allocatedExtra = 0;
+      const memberList = Object.entries(memberSubtotals);
+
+      memberList.forEach(([m, subtotal], idx) => {
+        let mExtra = 0;
+        if (idx === memberList.length - 1) {
+          mExtra = totalExtra - allocatedExtra;
+        } else {
+          mExtra = totalFood > 0 ? (subtotal / totalFood) * totalExtra : 0;
+          allocatedExtra += mExtra;
+        }
+        finalShares[m] = Math.round((subtotal + mExtra) * 100) / 100;
+      });
+
+      const grp = groups.find(g => g.id === activeFolderId) || groups.find(g => g.category === 'Food') || groups[0];
+
+      Object.keys(finalShares).forEach(m => {
+        if (!grp.members.includes(m)) {
+          grp.members.push(m);
+          if (!userProfiles[m]) {
+            userProfiles[m] = { name: m, phone: '', email: '', notifyWhatsApp: true, notifyEmail: true };
+          }
+        }
+      });
+
+      const newBill = {
+        id: 'meal_' + Date.now(),
+        groupId: grp.id,
+        title: 'Restaurant Feast 🍕',
+        category: 'Food',
+        amount: totalBill,
+        payerMode: 'single',
+        payers: [{ name: currentActiveUser, amount: totalBill }],
+        splitWays: Object.keys(finalShares).length,
+        splitMembers: Object.keys(finalShares),
+        shares: finalShares,
+        notes: `Itemized Claims: ${Object.entries(finalShares).map(([m, s]) => `${m} (${formatMoney(s)})`).join(', ')}`,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        date: 'Today'
+      };
+
+      grp.expenses.unshift(newBill);
+      mealDishes = [];
+      recalculateAllBalances();
+      saveAppState();
+      showToast(`Itemized meal (${formatMoney(totalBill)}) saved to "${grp.name}"!`);
+      switchScreen('home');
+    }
+
+    function renderCategoriesRibbon() {
+      const el = document.getElementById('categories-ribbon');
+      if (!el) return;
+      el.innerHTML = categories.map(c => {
+        const isSelected = c.name.toLowerCase() === selectedCategoryName.toLowerCase();
+        return `
+          <button type="button" onclick="selectCategoryChip('${c.name}', '${c.icon}')" class="px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap flex items-center gap-1.5 border transition ${
+            isSelected ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md' : 'bg-slate-850 text-slate-300 border-slate-750'
+          }">
+            <span>${c.icon}</span>
+            <span>${c.name}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategoryChip(name, icon) {
+      selectedCategoryName = name;
+      document.getElementById('custom-item-input').value = name;
+      document.getElementById('active-item-emoji').innerText = icon;
+      if (name.toLowerCase() === 'loan') {
+        selectOnlyYouSplit();
+      }
+      renderCategoriesRibbon();
+    }
+
+    function handleCustomInput(val) {
+      selectedCategoryName = val.trim() || 'General Expense';
+      const found = categories.find(c => c.name.toLowerCase() === val.toLowerCase().trim());
+      document.getElementById('active-item-emoji').innerText = found ? found.icon : '🏷️';
+      if (val.toLowerCase().includes('loan')) {
+        selectOnlyYouSplit();
+      }
+      renderCategoriesRibbon();
+    }
+
+    function saveAsNewTag() {
+      const input = document.getElementById('custom-item-input');
+      const val = input.value.trim();
+      if (!val) return;
+      if (!categories.some(c => c.name.toLowerCase() === val.toLowerCase())) {
+        categories.unshift({ name: val, icon: '🏷️' });
+        renderCategoriesRibbon();
+        alert(`New tag "${val}" added!`);
+      }
+    }
+
+    function topUpKitty() {
+      const grp = groups.find(g => g.id === activeFolderId) || groups[0];
+      grp.kittyBalance = (grp.kittyBalance || 0) + 500.00;
+      document.getElementById('kitty-pool-display').innerText = formatMoney(grp.kittyBalance);
+      alert(`🎉 500 added to ${grp.name}'s Kitty Pool! New balance: ${formatMoney(grp.kittyBalance)}`);
+    }
+
+    function togglePrivacyMode() {
+      isPrivacyMode = !isPrivacyMode;
+      document.getElementById('eye-icon').innerText = isPrivacyMode ? '🙈' : '👁️';
+      const masks = document.querySelectorAll('.balance-mask');
+      masks.forEach(el => {
+        if (isPrivacyMode) {
+          el.setAttribute('data-orig', el.innerText);
+          el.innerText = currentCurrency.symbol + '••••••';
+        } else {
+          const orig = el.getAttribute('data-orig');
+          if (orig) el.innerText = orig;
+        }
+      });
+    }
+
+    function switchScreen(screenId) {
+      ['home', 'add-simple', 'pay-back', 'who-ate', 'qr', 'charts'].forEach(s => {
+        const el = document.getElementById('screen-' + s);
+        if (el) el.classList.add('hidden');
+      });
+
+      const target = document.getElementById('screen-' + screenId);
+      if (target) target.classList.remove('hidden');
+
+      ['home', 'add', 'pay', 'qr'].forEach(t => {
+        const tabEl = document.getElementById('tab-' + t);
+        if (tabEl) {
+          tabEl.classList.remove('text-emerald-400');
+          tabEl.classList.add('text-slate-400');
+        }
+      });
+
+      const currentTabMap = { 'home': 'home', 'add-simple': 'add', 'pay-back': 'pay', 'qr': 'qr' };
+      if (currentTabMap[screenId]) {
+        const active = document.getElementById('tab-' + currentTabMap[screenId]);
+        if (active) {
+          active.classList.add('text-emerald-400');
+          active.classList.remove('text-slate-400');
+        }
+      }
+
+      if (screenId === 'add-simple') {
+        renderAddBillFolderSelect();
+        changeBillFolder(addBillGroupId);
+      }
+
+      if (screenId === 'who-ate') {
+        renderKidFriendsRibbon();
+        renderKidDishes();
+      }
+    }
+
+    function changeCurrency(code) {
+      currentCurrency = currencies[code] || currencies.PKR;
+      const symbolEl = document.getElementById('simple-currency-symbol');
+      if (symbolEl) symbolEl.innerText = currentCurrency.symbol;
+      updateSimpleDisplay();
+      recalculateAllBalances();
+      saveAppState();
+      showToast(`Currency set to ${currentCurrency.code} (${currentCurrency.symbol}). Base denomination active.`);
+    }
+
     function changeLanguage(lang) {
       currentLang = lang;
       const t = i18n[lang] || i18n.EN;
@@ -1730,7 +3742,7 @@
       setTxt('txt-charts-sub', t.chartsSub);
       setTxt('txt-meal-banner-title', t.mealBannerTitle);
       setTxt('txt-meal-banner-sub', t.mealBannerSub);
-      
+
       const sel = document.getElementById('lang-select');
       if (sel && sel.value !== lang) sel.value = lang;
 
@@ -1740,6 +3752,7 @@
 
       recalculateAllBalances();
       saveAppState();
+      showToast(`Language set to ${lang === 'EN' ? 'English' : (lang === 'UR' ? 'Urdu' : 'Hindi')}.`);
     }
 
     // Helper: set partial settlement input
@@ -1938,7 +3951,7 @@
             if (enteredPin === appPin) {
               unlockApp();
             } else {
-              alert(currentLang === "UR" ? "Ghalat PIN! Baraye meherbani dobara koshish karein. (Default: 1234)" : "Incorrect PIN! Please try again. (Default: 1234)");
+              alert('Ghalat PIN! Baraye meherbani dobara koshish karein. (Default: 1234)');
               clearPinInput();
             }
           }, 150);
@@ -2375,7 +4388,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(() => {});
+        navigator.serviceWorker.register('./sw.js').then(r => r.update()).catch(() => {});
       });
     }
   
