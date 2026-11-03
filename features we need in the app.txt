@@ -1,0 +1,99 @@
+### Splitwise Complete Features List (Final)
+
+#### 1. Groups & Friends Management
+* Create Groups (Home, Trip, Couple, Other)
+* Add and remove members
+* 1-on-1 direct expenses (Non-group friends)
+* Invite via Link, QR Code, SMS, Email
+* Custom Group Avatars and Cover Photos
+* Archive, Leave, or Delete Group
+* Restore deleted groups
+* "Simplify Debts" Toggle per group (ON / OFF)
+* Block or remove contacts
+
+#### 2. Expense Logging
+* Add Bill (Title, Amount, Date)
+* Category selection with icons
+* Single Payer (Paid by one person)
+* Multi-Payer (Paid by several people unequal/exact)
+* Receipt / Bill photo attachment
+* Multiple receipt attachments per bill (Pro)
+* Add notes and comments to bills
+* Recurring Expenses (Daily, Weekly, Monthly, Yearly)
+* Multi-currency support
+* Edit existing bills
+* Delete bills
+* Restore deleted bills
+
+#### 3. Split Methods
+* Split Equally (Even division)
+* Split by Exact Amounts (Specific currency value per person)
+* Split by Percentages (% per person)
+* Split by Shares / Ratios (1x, 2x, etc.)
+* Split by Adjustments (+ / - fixed offset)
+* Split by Unequal Days / Nights (Trip duration)
+
+#### 4. Math & Balance Tracking
+* Debt Simplification (Min-Cash-Flow graph reduction)
+* Overall Net Balance (You owe / You are owed)
+* Group-level balance breakdown
+* Friend-level balance breakdown
+* Total Group Spending Counter (Cumulative sum)
+
+#### 5. Settlements & Payments
+* Record Cash Payment (Settle Up)
+* Partial Payment logging
+* Batch Settle (Clear multiple balances at once)
+* Payment Nudge / Reminder (Push notification / Email to debtor)
+* Digital wallet deep-links (Venmo, PayPal, Cash App, UPI)
+
+#### 6. Activity, Search & Export
+* Real-time Activity Feed (Chronological log of changes)
+* Detailed Bill Audit History (Who changed what and when)
+* Push notifications and email alerts
+* Keyword Search (By bill title, person, category, or date)
+* Filter by group, friend, or date
+* Export data to CSV / Excel
+* Export summary reports to PDF with receipts (Pro)
+
+#### 7. Security, App & Offline
+* Offline Mode (Add/edit offline, auto-sync when online)
+* Biometric Security Lock (Face ID, Fingerprint, PIN)
+* Multi-platform sync (iOS, Android, Web)
+* Default currency configuration
+* Granular notification preferences (Mute per group/friend)
+
+#### 8. Splitwise Pro (Paid / Paywalled Tier)
+* Receipt OCR scanning (Auto-extract total and items)
+* Real-time currency conversion rates
+* Spending charts and category analytics
+* Default split settings per group
+* Ad-free interface (Free tier has banner ads and bill entry cooldowns)
+
+------------------------------
+Plus these Unique Features as well we need to add
+
+### Additional Features Beyond Splitwise (Competitive Edge)
+
+#### 1. Features Splitwise Completely Lacks
+* **Shared Kitty Pool (Advance Cash Pot):** Upfront group cash fund for quick chai, snacks, and tolls so users don't log petty bills.
+* **Group & Trip Budget Tracker:** Set a spending limit with a visual progress bar (Spent vs. Remaining Budget).
+* **"Who Ate What?" (Interactive Meal Splitter):** Tap dishes on a table to assign who ate what, with automated proportional tax and tip.
+* **Things Borrowed Tracker:** Track physical items (Cameras, Car Keys, Camping Gear) with due dates and a 1-tap return checkoff.
+* **1-Tap Privacy Mode (👁️):** One click masks all screen balances (`Rs ••••••`) when viewing in public.
+* **Coffee Roulette (🎲 Spin the Wheel):** Randomly picks one friend to pay today's round instead of splitting small change.
+* **Direct 100% Loan Mode:** Clean 1-tap loan logging (e.g., Arslan & Irfan fund a 10 Lac loan directly to Usman without split confusion).
+* **Payment Proof & Txn Ref:** Attach payment references (JazzCash, Easypaisa, Bank UTR) to settlements to eliminate payment disputes.
+* **Perspective Switcher:** 1-click preview of what any member sees on their screen (View as Usman, View as Arslan).
+
+#### 2. Features Splitwise Locks Behind Paywalls ($4.99/mo Pro) That We Keep 100% Free
+* **Unlimited Daily Expenses:** Zero daily bill limits (Splitwise restricts free users to 3–4 bills per day with countdown timers).
+* **Free Visual Charts & Analytics:** Full category spending breakdown without any subscription.
+* **Zero Paywalls:** No ads, no locked features, no timers.
+
+#### 3. Low-Friction & Regional Advantages
+* **Zero-Download Guest Access:** Friends view their live balance via web links (`?user=arslan`) in any mobile browser without installing an app or signing up.
+* **1-Tap WhatsApp Alerts:** Pre-composed statement alerts and settlement receipts sent directly to friends on WhatsApp.
+* **High Currency Limit Support:** Native support for South Asian numbering formats up to 99 Lacs (99,00,000).
+* **Multi-Language Support:** English, Urdu, and Hindi.
+

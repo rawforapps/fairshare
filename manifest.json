@@ -1,0 +1,45 @@
+{
+  "name": "FairShare - 100% Free Splitwise Alternative",
+  "short_name": "FairShare",
+  "description": "Zero-cooldown, zero-API-cost group expense splitter with Min-Cash-Flow debt simplification.",
+  "start_url": "./preview.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090D16",
+  "theme_color": "#090D16",
+  "icons": [
+    {
+      "src": "./assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/adaptive-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Add Expense",
+      "short_name": "Add Bill",
+      "description": "Quickly record a new bill or loan",
+      "url": "./preview.html#add",
+      "icons": [{ "src": "./assets/favicon.png", "sizes": "64x64" }]
+    },
+    {
+      "name": "Settle Up",
+      "short_name": "Balances",
+      "description": "View simplified settlements and chukta",
+      "url": "./preview.html#pay",
+      "icons": [{ "src": "./assets/favicon.png", "sizes": "64x64" }]
+    }
+  ]
+}
