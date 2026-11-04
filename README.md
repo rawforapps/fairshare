@@ -1,6 +1,6 @@
-# 🤝 FairShare — 100% Free Splitwise Alternative
+# 🤝 FairShare v10 — 100% Free Splitwise Alternative
 
-> **Zero Cooldowns • Zero Subscription Paywalls • Zero API Costs • Mathematical Integer-Cent Precision**
+> **Version 10.0.0 (v10) • Pure English Interface • Zero Cooldowns • Zero Subscription Paywalls • Zero API Costs • Mathematical Integer-Cent Precision**
 
 FairShare is a modern, high-precision, zero-subscription group expense sharing and debt simplification platform. It directly solves the pain points of Splitwise (10-second wait penalties, 3-4 daily expense caps, $4.99/mo Pro paywalls for charts and receipt scanning).
 
@@ -21,7 +21,7 @@ FairShare is a modern, high-precision, zero-subscription group expense sharing a
 * **🎲 Coffee Roulette:** Randomly spins a wheel to pick one friend to pay today's coffee or round.
 * **👁️ 1-Tap Privacy Mode:** Instantly masks all financial values with asterisks (`Rs ••••••`) in public.
 * **📱 Progressive Web App (PWA):** Zero-download installable web app with standalone full-screen mode for iOS and Android homescreens.
-* **🇵🇰 South Asian Lacs/Crores Support:** Full support for numbers up to 99 Lacs (Rs 99,00,000.00) + 4 languages (Urdu, Hindi, English, Spanish).
+* **🇵🇰 South Asian Lacs/Crores Support:** Full support for numbers up to 99 Lacs (Rs 99,00,000.00) with pure English interface.
 
 ---
 
