@@ -285,7 +285,7 @@
             <div class="text-right">
               <span class="text-emerald-400 font-black text-sm tabular-nums balance-mask" id="kitty-pool-display">Rs 0.00</span>
               <button onclick="topUpKitty()" class="block text-[10px] font-black text-emerald-400 hover:text-emerald-300 transition">
-                + 500 Dalein
+                + Top Up
               </button>
             </div>
           </div>
@@ -391,6 +391,27 @@
           <span class="text-purple-400 text-lg font-black">&rarr;</span>
         </div>
 
+        <!-- 💰 SHARED KITTY POOL (ADVANCE CASH POT) BANNER -->
+        <div onclick="openKittyModal()" class="bg-gradient-to-r from-emerald-950/40 via-slate-850 to-slate-850 border border-emerald-500/30 rounded-2xl p-3.5 flex items-center justify-between cursor-pointer hover:border-emerald-400/50 transition">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl p-2 rounded-xl bg-emerald-500/20">💰</span>
+            <div>
+              <div class="flex items-center gap-2">
+                <h4 class="font-bold text-sm text-emerald-200">Shared Kitty Pool</h4>
+                <span class="text-[9px] bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded-full font-black uppercase tracking-wider">Advance Cash</span>
+              </div>
+              <p class="text-[10px] text-slate-400 mt-0.5">Common cash pot for chai, snacks & highway tolls</p>
+            </div>
+          </div>
+          <div class="text-right flex items-center gap-2">
+            <div>
+              <span class="text-emerald-400 font-black text-sm tabular-nums balance-mask block" id="home-kitty-pool-display">Rs 0.00</span>
+              <span class="text-[10px] text-emerald-400 font-bold hover:underline">+ Top Up</span>
+            </div>
+            <span class="text-emerald-400 text-lg font-black">&rarr;</span>
+          </div>
+        </div>
+
         <!-- 📦 BORROWED ITEMS TRACKER (Physical Items Lending) -->
         <div class="bg-slate-850 border border-slate-800 rounded-2xl p-3.5 space-y-2.5 shadow-sm">
           <div class="flex items-center justify-between">
@@ -457,6 +478,23 @@
             <button onclick="setPayerMode('kitty')" id="payer-mode-kitty" class="py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-200 transition">
               <span id="txt-mode-kitty">💰 Kitty Pool</span>
             </button>
+          </div>
+
+          <!-- 💰 Inline Kitty Pool Box (Active when Kitty Pool mode selected) -->
+          <div id="add-bill-kitty-box" class="hidden bg-emerald-950/30 border border-emerald-500/30 rounded-xl p-3 space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-lg">💰</span>
+                <div>
+                  <span class="text-xs font-bold text-emerald-300 block">Deduct from Shared Kitty Pool</span>
+                  <span class="text-[10px] text-slate-400">Available: <strong class="text-emerald-400 font-mono" id="add-bill-kitty-avail">Rs 0.00</strong></span>
+                </div>
+              </div>
+              <button type="button" onclick="openKittyModal()" class="px-2.5 py-1 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 text-xs font-black transition">
+                + Top Up Kitty
+              </button>
+            </div>
+            <p class="text-[10px] text-slate-300">💡 When paid from the Kitty Pool, everyone's share is paid out of the common advance fund. Nobody owes anyone personal debts!</p>
           </div>
 
           <!-- Dynamic Multi-Payer Box (Contains ONLY members of the selected folder!) -->
@@ -839,7 +877,7 @@
         <div class="w-9 h-9 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center font-black text-lg shadow-md shadow-emerald-500/20">
           +
         </div>
-        <span class="text-[10px] font-black" id="txt-tab-add">Bill Dalein</span>
+        <span class="text-[10px] font-black" id="txt-tab-add">Add Bill</span>
       </button>
 
       <button onclick="switchScreen('pay-back')" id="tab-pay" class="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200">
@@ -1308,6 +1346,72 @@
     </div>
   </div>
 
+  <!-- 💰 SHARED KITTY POOL TOP-UP & MANAGEMENT MODAL -->
+  <div id="kitty-modal" onclick="if(event.target === this) closeKittyModal()" class="fixed inset-0 bg-black/85 hidden items-center justify-center p-4 z-50">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 max-w-sm w-full space-y-4 shadow-2xl">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl p-1.5 rounded-xl bg-emerald-500/20">💰</span>
+          <div>
+            <h3 class="text-sm font-black text-slate-100">Shared Kitty Pool</h3>
+            <p class="text-[10px] text-slate-400">Advance cash pot for chai & snacks</p>
+          </div>
+        </div>
+        <button onclick="closeKittyModal()" class="text-slate-400 hover:text-slate-200 text-base p-1">✕</button>
+      </div>
+
+      <!-- Current Balance Banner -->
+      <div class="bg-slate-850 border border-slate-750 p-3.5 rounded-2xl flex items-center justify-between">
+        <span class="text-xs font-bold text-slate-300">Active Pot Balance</span>
+        <span class="text-lg font-black text-emerald-400 font-mono" id="modal-kitty-balance">Rs 0.00</span>
+      </div>
+
+      <!-- Target Folder / Group Selection -->
+      <div class="space-y-1">
+        <label class="text-[10px] font-black uppercase text-slate-400 block">Select Folder / Group Pot</label>
+        <select id="kitty-group-select" onchange="updateKittyModalDisplay()" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-emerald-500 cursor-pointer">
+          <!-- Populated dynamically with folders -->
+        </select>
+      </div>
+
+      <!-- Quick Amount Presets -->
+      <div class="space-y-1.5">
+        <label class="text-[10px] font-black uppercase text-slate-400 block">Top Up Amount</label>
+        <div class="grid grid-cols-3 gap-2">
+          <button type="button" onclick="setKittyPreset(500)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 border border-slate-700 text-emerald-400 text-xs font-black transition active:scale-95">+500</button>
+          <button type="button" onclick="setKittyPreset(1000)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 border border-slate-700 text-emerald-400 text-xs font-black transition active:scale-95">+1,000</button>
+          <button type="button" onclick="setKittyPreset(2000)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-750 border border-slate-700 text-emerald-400 text-xs font-black transition active:scale-95">+2,000</button>
+        </div>
+        <div class="bg-slate-850 border border-slate-750 rounded-xl px-3 py-2 flex items-center gap-2">
+          <span class="text-xs text-slate-400 font-mono" id="kitty-currency-symbol">Rs</span>
+          <input id="kitty-custom-amt" type="number" min="1" placeholder="Or enter custom amount" class="flex-1 bg-transparent text-xs text-slate-100 placeholder-slate-500 font-mono focus:outline-none">
+        </div>
+      </div>
+
+      <!-- Who is contributing? -->
+      <div class="space-y-1">
+        <label class="text-[10px] font-black uppercase text-slate-400 block">Contribution Method</label>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <label class="flex items-center gap-1.5 p-2 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer">
+            <input type="radio" name="kitty-source" value="cash" checked class="accent-emerald-500">
+            <span class="text-[11px] text-slate-200 font-bold">💵 Cash Collection</span>
+          </label>
+          <label class="flex items-center gap-1.5 p-2 rounded-xl bg-slate-800 border border-slate-700 cursor-pointer">
+            <input type="radio" name="kitty-source" value="split" class="accent-emerald-500">
+            <span class="text-[11px] text-slate-200 font-bold">👥 Split in Group</span>
+          </label>
+        </div>
+        <p class="text-[9px] text-slate-400 pt-0.5">
+          "Cash Collection" directly increases the pot. "Split in Group" records it so the group reimburses whoever supplied the cash.
+        </p>
+      </div>
+
+      <button onclick="executeKittyTopUp()" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shadow-lg shadow-emerald-500/20 active:scale-95 transition">
+        ✅ Add Funds to Kitty Pool
+      </button>
+    </div>
+  </div>
+
   <!-- 🗑️ FLOATING UNDO DELETE TOAST -->
   <div id="undo-toast" class="fixed bottom-20 left-1/2 -translate-x-1/2 bg-slate-800/95 border border-emerald-500/50 text-slate-100 px-4 py-2.5 rounded-2xl shadow-2xl items-center gap-3 z-50 hidden transition-all duration-300">
     <span class="text-base">🗑️</span>
@@ -1369,7 +1473,7 @@
     // ==========================================
     // 💾 LOCALSTORAGE PERSISTENCE ENGINE
     // ==========================================
-    const STORAGE_KEY = 'fairshare_v9';
+    const STORAGE_KEY = 'fairshare_v10';
 
     function saveAppState() {
       try {
@@ -1673,6 +1777,23 @@
       renderSettlements();
       renderChartsData();
       updateActivityBadge();
+
+      // Update Kitty Displays
+      const homeKittyEl = document.getElementById('home-kitty-pool-display');
+      if (homeKittyEl) {
+        let poolSum = 0;
+        if (activeFolderId === 'all') {
+          poolSum = groups.reduce((acc, g) => acc + (g.kittyBalance || 0), 0);
+        } else if (activeGroupObj) {
+          poolSum = activeGroupObj.kittyBalance || 0;
+        }
+        homeKittyEl.innerText = formatMoney(poolSum);
+      }
+      const addBillKittyAvail = document.getElementById('add-bill-kitty-avail');
+      if (addBillKittyAvail) {
+        const curGrp = groups.find(g => g.id === addBillGroupId) || groups[0];
+        addBillKittyAvail.innerText = formatMoney(curGrp ? (curGrp.kittyBalance || 0) : 0);
+      }
     }
 
     // ==========================================
@@ -2216,7 +2337,7 @@
               </div>
               <div>
                 <span class="text-xs font-bold ${isChecked ? 'text-slate-100' : 'text-slate-400'}">
-                  ${name} ${isYou ? '<span class="text-[10px] text-emerald-400 font-extrabold ml-1">'(You)</span>' : ''}
+                   
                 </span>
               </div>
             </div>
@@ -2298,6 +2419,102 @@
       renderSplitCheckpoints();
     }
 
+    
+    // ==========================================
+    // 💰 SHARED KITTY POOL MANAGEMENT ENGINE
+    // ==========================================
+    function openKittyModal() {
+      const modal = document.getElementById('kitty-modal');
+      const select = document.getElementById('kitty-group-select');
+      const sym = document.getElementById('kitty-currency-symbol');
+      if (sym) sym.innerText = currentCurrency.symbol;
+
+      if (select) {
+        select.innerHTML = groups.map(g => `
+          <option value="${g.id}" ${g.id === (activeFolderId !== 'all' ? activeFolderId : addBillGroupId) ? 'selected' : ''}>
+            ${g.icon} ${g.name} (${formatMoney(g.kittyBalance || 0)})
+          </option>
+        `).join('');
+      }
+
+      updateKittyModalDisplay();
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeKittyModal() {
+      const modal = document.getElementById('kitty-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    function updateKittyModalDisplay() {
+      const select = document.getElementById('kitty-group-select');
+      const balEl = document.getElementById('modal-kitty-balance');
+      if (!select || !balEl) return;
+      const grp = groups.find(g => g.id === select.value) || groups[0];
+      balEl.innerText = formatMoney(grp ? (grp.kittyBalance || 0) : 0);
+    }
+
+    function setKittyPreset(amt) {
+      const inp = document.getElementById('kitty-custom-amt');
+      if (inp) inp.value = amt;
+    }
+
+    function executeKittyTopUp() {
+      const select = document.getElementById('kitty-group-select');
+      const inp = document.getElementById('kitty-custom-amt');
+      const source = document.querySelector('input[name="kitty-source"]:checked')?.value || 'cash';
+
+      const grpId = select ? select.value : (groups[0]?.id);
+      const grp = groups.find(g => g.id === grpId);
+      if (!grp) return;
+
+      const amt = parseFloat(inp?.value);
+      if (!amt || isNaN(amt) || amt <= 0) {
+        showToast('Please enter a valid top up amount.', '⚠️');
+        return;
+      }
+
+      if (source === 'split') {
+        // Record as expense paid by currentActiveUser, split equally among folder members
+        const perMember = Math.round((amt / grp.members.length) * 100) / 100;
+        const newExpense = {
+          id: 'exp_' + Date.now(),
+          title: 'Kitty Pool Top Up',
+          amount: amt,
+          amountCents: amt * 100,
+          category: 'General',
+          paidBy: currentActiveUser,
+          date: 'Today',
+          splitWays: grp.members.length,
+          splitMembers: [...grp.members],
+          notes: 'Top up for Shared Kitty Pool',
+          payerMode: 'single'
+        };
+        grp.expenses.unshift(newExpense);
+      }
+
+      // Add to kitty balance
+      grp.kittyBalance = (grp.kittyBalance || 0) + amt;
+
+      // Update all UI elements
+      if (inp) inp.value = '';
+      closeKittyModal();
+      recalculateAllBalances();
+      saveAppState();
+      showToast(`🎉 Added ${formatMoney(amt)} to ${grp.name}'s Kitty Pool!`);
+    }
+
+    // Direct topUpKitty helper for folder view button
+    function topUpKitty() {
+      openKittyModal();
+    }
+
     function setPayerMode(mode) {
       payerMode = mode;
       ['single', 'multi', 'kitty'].forEach(m => {
@@ -2310,6 +2527,8 @@
       });
 
       const multiBox = document.getElementById('multi-payer-box');
+      const kittyBox = document.getElementById('add-bill-kitty-box');
+
       if (mode === 'multi') {
         multiBox.classList.remove('hidden');
         renderDynamicPayers();
@@ -2318,8 +2537,14 @@
       }
 
       if (mode === 'kitty') {
-        const grp = groups.find(g => g.id === addBillGroupId);
-        alert(`💰 Bill will be deducted straight from ${grp ? grp.name : 'group'}'s Shared Kitty Pool (${formatMoney(grp ? grp.kittyBalance : 0)} left). Nobody owes anyone!`);
+        if (kittyBox) {
+          kittyBox.classList.remove('hidden');
+          const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
+          const availEl = document.getElementById('add-bill-kitty-avail');
+          if (availEl) availEl.innerText = formatMoney(grp ? (grp.kittyBalance || 0) : 0);
+        }
+      } else {
+        if (kittyBox) kittyBox.classList.add('hidden');
       }
     }
 
