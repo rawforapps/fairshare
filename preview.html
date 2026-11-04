@@ -449,20 +449,20 @@
           
           <div class="grid grid-cols-3 gap-1.5 bg-slate-900 p-1 rounded-xl">
             <button onclick="setPayerMode('single')" id="payer-mode-single" class="py-1.5 rounded-lg text-xs font-black bg-emerald-500 text-slate-950 transition">
-              <span id="txt-mode-just-you">Sirf Mene</span>
+              <span id="txt-mode-just-you">Just You</span>
             </button>
             <button onclick="setPayerMode('multi')" id="payer-mode-multi" class="py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-200 transition">
-              <span id="txt-mode-multi">👥 Mil Kar Diya</span>
+              <span id="txt-mode-multi">👥 Multiple Payers</span>
             </button>
             <button onclick="setPayerMode('kitty')" id="payer-mode-kitty" class="py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-slate-200 transition">
-              <span id="txt-mode-kitty">💰 Kitty Pool Se</span>
+              <span id="txt-mode-kitty">💰 Kitty Pool</span>
             </button>
           </div>
 
           <!-- Dynamic Multi-Payer Box (Contains ONLY members of the selected folder!) -->
           <div id="multi-payer-box" class="hidden space-y-2 pt-1 border-t border-slate-800">
             <div class="flex items-center justify-between">
-              <p class="text-[10px] text-slate-400" id="txt-multipayer-hint">Har shakhs ki di hui raqam likhein:</p>
+              <p class="text-[10px] text-slate-400" id="txt-multipayer-hint">Enter amount paid by each person:</p>
               <button onclick="toggleAddPayerInput()" class="text-[10px] font-extrabold text-emerald-400 hover:underline" id="txt-btn-add-payer">
                 + Add Payer to Folder
               </button>
@@ -500,10 +500,10 @@
             </div>
             <div class="flex items-center gap-1.5">
               <button type="button" onclick="selectAllSplitMembers()" class="px-2 py-1 rounded-lg bg-slate-800 hover:bg-slate-750 text-[10px] font-bold text-slate-300 border border-slate-700 transition" id="txt-btn-select-all">
-                👥 Sab Ko
+                👥 Everyone
               </button>
               <button type="button" onclick="selectOnlyYouSplit()" class="px-2 py-1 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-[10px] font-bold text-emerald-400 border border-emerald-500/30 transition" id="txt-btn-only-you">
-                👤 Sirf Mujhe (100%)
+                👤 Just Me (100%)
               </button>
             </div>
           </div>
@@ -715,7 +715,7 @@
 
         <!-- Add Dish Input Row -->
         <div class="bg-slate-850 border border-slate-800 rounded-2xl p-2.5 flex items-center gap-2">
-          <input id="custom-dish-name" type="text" placeholder="Dish ka naam (e.g. Biryani 🍛)" class="flex-1 bg-slate-900 border border-slate-750 rounded-xl px-2.5 py-1.5 text-xs text-slate-100 focus:outline-none">
+          <input id="custom-dish-name" type="text" placeholder="Dish name (e.g. Pasta or Drinks 🍕)" class="flex-1 bg-slate-900 border border-slate-750 rounded-xl px-2.5 py-1.5 text-xs text-slate-100 focus:outline-none">
           <input id="custom-dish-price" type="number" placeholder="Price" class="w-20 bg-slate-900 border border-slate-750 rounded-xl px-2.5 py-1.5 text-xs text-slate-100 font-mono focus:outline-none">
           <button onclick="addCustomDishToMeal()" class="px-3 py-1.5 rounded-xl bg-purple-500 text-slate-950 font-black text-xs" id="txt-btn-add-dish">
             + Add
@@ -725,6 +725,20 @@
         <!-- Dishes List Container -->
         <div id="kid-dishes-container" class="space-y-2">
           <!-- Dynamically populated -->
+        </div>
+
+        <!-- Tax & Tip Controls (Proportional Split Engine) -->
+        <div class="bg-slate-850 border border-slate-800 rounded-2xl p-2.5 flex items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-1.5 flex-1">
+            <span class="text-slate-400 font-bold">🏛️ Tax:</span>
+            <input id="meal-tax-input" type="number" min="0" max="100" value="0" placeholder="0" class="w-14 bg-slate-900 border border-slate-750 rounded-xl px-2 py-1 text-xs text-slate-100 font-mono text-center focus:outline-none focus:border-purple-400">
+            <span class="text-slate-400 font-bold">%</span>
+          </div>
+          <div class="flex items-center gap-1.5 flex-1">
+            <span class="text-slate-400 font-bold">⭐ Tip:</span>
+            <input id="meal-tip-input" type="number" min="0" max="100" value="0" placeholder="0" class="w-14 bg-slate-900 border border-slate-750 rounded-xl px-2 py-1 text-xs text-slate-100 font-mono text-center focus:outline-none focus:border-purple-400">
+            <span class="text-slate-400 font-bold">%</span>
+          </div>
         </div>
 
         <button onclick="saveMealSplit()" class="w-full py-3.5 rounded-2xl bg-purple-500 hover:bg-purple-400 text-slate-950 font-black text-base shadow-xl shadow-purple-500/25 active:scale-95 transition" id="txt-btn-save-meal">
@@ -1355,7 +1369,7 @@
     // ==========================================
     // 💾 LOCALSTORAGE PERSISTENCE ENGINE
     // ==========================================
-    const STORAGE_KEY = 'fairshare_v8';
+    const STORAGE_KEY = 'fairshare_v9';
 
     function saveAppState() {
       try {
@@ -1405,7 +1419,7 @@
       location.reload();
     }
 
-    let currentActiveUser = 'Usman'; // Default Active User: Usman ('You')
+    let currentActiveUser = 'You'; // Default Active User: Usman ('You')
     let isPrivacyMode = false;
     let payerMode = 'single'; // 'single', 'multi', 'kitty'
     var simplifyDebtsMode = true;
@@ -1431,13 +1445,9 @@
     };
     let currentCurrency = currencies.PKR;
 
-    // Default registered members profiles
+    // Default registered members profiles (Clean 0-state)
     let userProfiles = {
-      'Usman': { name: 'Usman', phone: '+92 300 1234567', email: 'usman@fairshare.app', notifyWhatsApp: true, notifyEmail: true },
-      'Arslan': { name: 'Arslan', phone: '+92 312 9876543', email: 'arslan@gmail.com', notifyWhatsApp: true, notifyEmail: true },
-      'Irfan': { name: 'Irfan', phone: '+92 333 5551234', email: 'irfan@gmail.com', notifyWhatsApp: true, notifyEmail: true },
-      'Ali': { name: 'Ali', phone: '+92 321 1112233', email: 'ali@gmail.com', notifyWhatsApp: true, notifyEmail: true },
-      'Hamza': { name: 'Hamza', phone: '+92 345 9998877', email: 'hamza@gmail.com', notifyWhatsApp: true, notifyEmail: true }
+      'You': { name: 'You', phone: '', email: '', notifyWhatsApp: true, notifyEmail: true }
     };
 
     // ===================================================================
@@ -1517,37 +1527,15 @@
     ];
 
     // Default: Fully operational rich sample dataset loaded by default
-    let groups = JSON.parse(JSON.stringify(SAMPLE_DEMO_GROUPS));
+    let groups = JSON.parse(JSON.stringify(CLEAN_STARTER_GROUPS));
     let activeFolderId = 'all';
     let addBillGroupId = 'grp_loan';
 
-    // Physical Items Borrowed Tracker
-    let borrowedItems = [
-      { id: 'item_1', name: 'DSLR Camera 📷', borrower: 'Ali', lender: 'Usman', due: 'Friday', returned: false },
-      { id: 'item_2', name: 'Camping Tent ⛺', borrower: 'Hamza', lender: 'Usman', due: 'Next Week', returned: false }
-    ];
+    // Physical Items Borrowed Tracker (Clean default)
+    let borrowedItems = [];
 
-    // Real-Time Activity & Group Alerts Center
-    let activityLog = [
-      {
-        id: 'act_1',
-        groupId: 'grp_loan',
-        groupName: 'Personal Loan',
-        icon: '💰',
-        text: 'Arslan (Rs 400,000.00) & Irfan (Rs 600,000.00) recorded Loan of Rs 1,000,000.00 for Usman.',
-        time: 'Today 12:00 PM',
-        membersNotified: ['Usman', 'Arslan', 'Irfan']
-      },
-      {
-        id: 'act_2',
-        groupId: 'grp_pizza',
-        groupName: 'Pizza & Food Party',
-        icon: '🍕',
-        text: 'Usman added bill "Large Pan Pizza & Drinks" for Rs 3,000.00 (Split between Usman, Ali, Hamza).',
-        time: 'Yesterday 08:30 PM',
-        membersNotified: ['Usman', 'Ali', 'Hamza']
-      }
-    ];
+    // Real-Time Activity & Group Alerts Center (Clean default)
+    let activityLog = [];
 
     let mealDishes = [];
     let activeKid = 'Usman';
@@ -1976,7 +1964,7 @@
         }
 
         let splitDesc = b.splitWays === 1 && b.splitMembers.length === 1 
-          ? `🎯 100% Qarz (${b.splitMembers[0]})`
+          ? `🎯 100% Debt (${b.splitMembers[0]})`
           : `Split ${b.splitWays || b.splitMembers.length} ways (${b.splitMembers.join(', ')})`;
         if (b.isRecurring) {
           splitDesc += ' • <span class="text-emerald-400 font-extrabold">🔁 Monthly</span>';
@@ -2211,8 +2199,8 @@
         const isYou = name === currentActiveUser;
         const shareText = isChecked ? formatMoney(perPerson) : formatMoney(0);
         const statusText = isChecked 
-          ? (count === 1 ? '🎯 100% (Poora)' : 'Hisab mein shamil') 
-          : 'Nahi shamil';
+          ? (count === 1 ? '🎯 100% (Full)' : 'Included in split') 
+          : 'Not included';
 
         return `
           <div onclick="toggleSplitMember('${name}')" class="flex items-center justify-between p-2 rounded-xl border transition cursor-pointer select-none ${
@@ -2248,7 +2236,7 @@
     function toggleSplitMember(name) {
       if (selectedSplitMembers.includes(name)) {
         if (selectedSplitMembers.length === 1) {
-          alert('Kam az kam aik member ko tick rakhna zaroori hai!');
+          alert('At least one member must remain selected!');
           return;
         }
         selectedSplitMembers = selectedSplitMembers.filter(m => m !== name);
@@ -2293,17 +2281,17 @@
       const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
 
       if (count === 0) {
-        document.getElementById('simple-per-person').innerText = `⚠️ Kam az kam 1 member ko tick karein`;
+        document.getElementById('simple-per-person').innerText = `⚠️ Select at least 1 member`;
       } else if (count === 1) {
         const singleName = selectedSplitMembers[0];
-        const displayName = singleName === currentActiveUser ? 'Aap ne' : singleName;
-        document.getElementById('simple-per-person').innerText = `🎯 100% Hisab: ${displayName} ne poora wapas karna hai ${currentCurrency.symbol} ${num}`;
+        const displayName = singleName === currentActiveUser ? 'You' : singleName;
+        document.getElementById('simple-per-person').innerText = `🎯 100% Split: ${displayName} owes the full amount (${currentCurrency.symbol} ${num})`;
       } else if (count === grp.members.length) {
         const each = ((total / count)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById('simple-per-person').innerText = `👉 Split ${count} ways (Barabar) = ${currentCurrency.symbol} ${each} each`;
+        document.getElementById('simple-per-person').innerText = `👉 Split ${count} ways (Equal) = ${currentCurrency.symbol} ${each} each`;
       } else {
         const each = ((total / count)).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        document.getElementById('simple-per-person').innerText = `👉 Split ${count} logon mein = ${currentCurrency.symbol} ${each} each`;
+        document.getElementById('simple-per-person').innerText = `👉 Split among ${count} members = ${currentCurrency.symbol} ${each} each`;
       }
 
       if (payerMode === 'multi') updateMultiPayerMath();
@@ -2346,7 +2334,7 @@
       const grp = groups.find(g => g.id === addBillGroupId) || groups[0];
 
       if (selectedSplitMembers.length === 0) {
-        alert('Kam az kam 1 member ko hisab mein tick karein!');
+        alert('Select at least 1 member to split the bill!');
         return;
       }
 
@@ -2961,9 +2949,10 @@ FairShare (100% Free • Zero Limits)`;
 
     function renderUserPerspectiveSelect() {
       const allMembersSet = new Set();
+      if (currentActiveUser) allMembersSet.add(currentActiveUser);
       groups.forEach(g => g.members.forEach(m => allMembersSet.add(m)));
       const allMembers = Array.from(allMembersSet);
-      if (allMembers.length === 0) allMembers.push(currentActiveUser || 'Usman');
+      if (allMembers.length === 0) allMembers.push('You');
 
       const userSelect = document.getElementById('user-view-select');
       if (userSelect) {
@@ -3805,6 +3794,17 @@ ${link}`);
     // ==========================================
     // 🧾 RECEIPT VIEWER & SEARCH HELPERS
     // ==========================================
+    function handleBillSearch(query) {
+      activeBillSearchQuery = (query || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('bill-search-clear');
+      if (clearBtn) {
+        if (activeBillSearchQuery.length > 0) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+      const activeGrp = groups.find(g => g.id === activeFolderId);
+      if (activeGrp) renderSingleFolderView(activeGrp);
+    }
+
     function clearBillSearch() {
       const inp = document.getElementById('bill-search-input');
       if (inp) inp.value = '';
@@ -3823,6 +3823,29 @@ ${link}`);
       }
     }
 
+    function handleReceiptUpload(input) {
+      if (!input || !input.files || !input.files[0]) return;
+      const file = input.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        showToast('Receipt photo too large! Max 5MB allowed.', '⚠️');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        attachedReceiptDataUrl = e.target.result;
+        const thumbWrap = document.getElementById('receipt-preview-thumb');
+        const thumbImg = document.getElementById('receipt-thumb-img');
+        const clearBtn = document.getElementById('receipt-remove-btn');
+        const statusText = document.getElementById('receipt-status-text');
+        if (thumbImg) thumbImg.src = attachedReceiptDataUrl;
+        if (thumbWrap) thumbWrap.classList.remove('hidden');
+        if (clearBtn) clearBtn.classList.remove('hidden');
+        if (statusText) statusText.innerText = 'Photo attached (stored locally)';
+        showToast('📷 Receipt photo attached!');
+      };
+      reader.readAsDataURL(file);
+    }
+
     function viewReceiptFull() {
       if (!attachedReceiptDataUrl) return;
       const img = document.getElementById('receipt-modal-img');
@@ -3836,12 +3859,15 @@ ${link}`);
 
     function removeAttachedReceipt() {
       attachedReceiptDataUrl = null;
-      const thumbWrap = document.getElementById('receipt-thumb-wrap');
+      const thumbWrap = document.getElementById('receipt-preview-thumb');
       const clearBtn = document.getElementById('receipt-remove-btn');
-      const inp = document.getElementById('receipt-file-input');
+      const inp = document.getElementById('bill-receipt-file');
+      const statusText = document.getElementById('receipt-status-text');
       if (thumbWrap) thumbWrap.classList.add('hidden');
       if (clearBtn) clearBtn.classList.add('hidden');
       if (inp) inp.value = '';
+      if (statusText) statusText.innerText = 'Attach image ($0 cloud storage)';
+      showToast('Receipt photo removed.');
     }
 
     // ==========================================
@@ -3892,7 +3918,7 @@ ${link}`);
             if (enteredPin === appPin) {
               unlockApp();
             } else {
-              alert('Ghalat PIN! Baraye meherbani dobara koshish karein. (Default: 1234)');
+              alert('Incorrect PIN! Please try again. (Default: 1234)');
               clearPinInput();
             }
           }, 150);
